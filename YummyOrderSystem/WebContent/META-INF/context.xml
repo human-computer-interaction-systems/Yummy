@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+  <Resource name="jdbc/login" auth="Container" type="javax.sql.DataSource"
+               maxActive="50" maxIdle="30" maxWait="10000" logAbandoned="true" 
+               username="root" password="zp199882" driverClassName="com.mysql.cj.jdbc.Driver"
+               url="jdbc:mysql://localhost:3306/yummy?serverTimezone=Asia/Shanghai"/>
+               
+    <Resource name="mail/Dog" auth="Container"
+            type="javax.mail.Session"
+            mail.smtp.host="smtp.qq.com" mail.smtp.auth="true"
+            mail.transport.protocol="smtp"
+            />
+
+</Context>
+
+ 
+
