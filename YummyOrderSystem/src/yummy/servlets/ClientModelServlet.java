@@ -3,7 +3,9 @@ package yummy.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -19,8 +21,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.google.gson.Gson;
 
 import yummy.model.Client;
+import yummy.model.ClientFavor;
 import yummy.model.Order;
 import yummy.service.ClientService;
+import yummy.service.ClientStatisticsService;
 
 /**
  * Servlet implementation class ClientStatisticsServlet
@@ -31,7 +35,7 @@ public class ClientModelServlet extends HttpServlet {
     
 	private static ApplicationContext appliationContext;
 	
-	private static ClientService clientService;
+	private static ClientStatisticsService clientStatisticsService;
     /**	
      * @see HttpServlet#HttpServlet()
      */
@@ -43,7 +47,7 @@ public class ClientModelServlet extends HttpServlet {
     public void init() throws ServletException {  
     	super.init();
     	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
-    	clientService = (ClientService)appliationContext.getBean("ClientService");
+    	clientStatisticsService = (ClientStatisticsService)appliationContext.getBean("ClientStatisticsService");
     }  
     
 	/**
@@ -53,18 +57,29 @@ public class ClientModelServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String cid = request.getParameter("cid");
+		int cid = Integer.parseInt(request.getParameter("cid"));
 		System.out.println("cid: "+cid);
 		
 		
 		
 		Map<String,Object> map = new HashMap<>();
+		List<Number> overview = clientStatisticsService.getOverviewData(cid);
+		List<List<Number>> chart1 = clientStatisticsService.getLastWeekCon(cid);
+		List<List<Number>> chart2 = clientStatisticsService.getThisMonthCon(cid);
+		List<List<Number>> chart3 = clientStatisticsService.getConProStatistics(cid);
+		List<List<Number>> chart4 = clientStatisticsService.getHistoricalCon(cid);
+		List<Number> chart5 = clientStatisticsService.getHistoricalConType(cid);
 		
+		List<ClientFavor> myFavor = clientStatisticsService.getMyFavorRes(cid);
 		
-		map.put("myDYDD", 15);
-		map.put("myDYTD", 2);
-		map.put("myDYXF", 318.8);
-		map.put("myDYSJ", 6);
+		map.put("overview", overview);
+		map.put("c1", chart1);
+		map.put("c2", chart2);
+		map.put("c3", chart3);
+		map.put("c4", chart4);
+		map.put("c5", chart5);
+		map.put("myFavor", myFavor);
+		
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(map);

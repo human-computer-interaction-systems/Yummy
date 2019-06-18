@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import yummy.dao.ClientDao;
 import yummy.dao.ManagerDao;
 import yummy.model.Client;
 import yummy.model.Manager;

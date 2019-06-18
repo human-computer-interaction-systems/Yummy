@@ -37,7 +37,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0" level="application" />
     <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.web.container" level="application" />
     <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />
@@ -95,8 +95,8 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="Spring" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:8.0.16" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" name="Spring" level="project" />
   </component>
 </module>

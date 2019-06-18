@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.google.gson.Gson;
 
 import yummy.model.Order;
+import yummy.service.ResStatService;
 import yummy.service.RestaurantService;
 
 /**
@@ -28,7 +30,7 @@ public class RestaurantModelServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private static ApplicationContext appliationContext;
-	private static RestaurantService restaurantService;
+	private static ResStatService resStatService;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -40,7 +42,7 @@ public class RestaurantModelServlet extends HttpServlet {
     public void init() throws ServletException {  
     	super.init();
     	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
-    	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
+    	resStatService = (ResStatService)appliationContext.getBean("ResStatService");
     }  
 
 	/**
@@ -50,17 +52,34 @@ public class RestaurantModelServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		String rid = request.getParameter("rid");
+		int rid = Integer.parseInt(request.getParameter("rid"));
 		System.out.println("rid: "+rid);
 		
 		
 		Map<String,Object> map = new HashMap<>();
+		List<Number> overview = resStatService.getOverviewData(rid);
+		List<List<Number>> chart1 = resStatService.getLastWeekTur(rid);
+		List<List<Number>> chart2 = resStatService.getThisMonthTur(rid);
+		List<List<Number>> chart3 = resStatService.getLastWeekOrderN(rid);
+		List<List<Number>> chart4 = resStatService.getThisMonthOrderN(rid);
+		List<List<Number>> chart5 = resStatService.getPerMonthOrder(rid);
+		List<List<Number>> chart6 = resStatService.getPerMonthMarket(rid);
+		List<List<Number>> chart7 = resStatService.getOrderStatistics(rid);
+		List<List<Number>> chart8 = resStatService.getClientStatistics(rid);
+		List<Number> chart9 = resStatService.getHistoricalTurnover(rid);
 		
 		
-		map.put("myDYDD", 1103);
-		map.put("myDYTD", 72);
-		map.put("myDYJZ", 23760);
-		map.put("myDYGK", 2350);
+		map.put("overview", overview);
+		map.put("c1", chart1);
+		map.put("c2", chart2);
+		map.put("c3", chart3);
+		map.put("c4", chart4);
+		map.put("c5", chart5);
+		map.put("c6", chart6);
+		map.put("c7", chart7);
+		map.put("c8", chart8);
+		map.put("c9", chart9);
+		
 		
 		
 		Gson gson = new Gson();

@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="YummyOrderSystem:Web exploded">
-    <output-path>$PROJECT_DIR$/classes/artifacts/YummyOrderSystem_Web_exploded</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/YummyOrderSystem_Web_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="YummyOrderSystem/web/Web" />
       <element id="directory" name="WEB-INF">
@@ -14,7 +14,6 @@
           <element id="library" level="module" name="mail.jar" module-name="YummyOrderSystem" />
           <element id="library" level="module" name="slf4j-api-1.7.10.jar" module-name="YummyOrderSystem" />
           <element id="library" level="module" name="slf4j-log4j12-1.7.10.jar" module-name="YummyOrderSystem" />
-          <element id="library" level="project" name="Spring" />
           <element id="library" level="project" name="mysql:mysql-connector-java:8.0.16" />
         </element>
       </element>

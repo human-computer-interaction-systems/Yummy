@@ -29,6 +29,15 @@
 	<bean id="ManagerService" class="yummy.service.ManagerServiceBean">
 	
 	</bean>
+	<bean id="ClientStatisticsService" class="yummy.service.ClientStatisticsServiceBean">
+	
+	</bean>
+	<bean id="ResStatService" class="yummy.service.ResStatServiceBean">
+	
+	</bean>
+	<bean id="ManStatService" class="yummy.service.ManStatServiceBean">
+	
+	</bean>
 		<context:component-scan base-package="yummy">  
 	</context:component-scan>  
 </beans>

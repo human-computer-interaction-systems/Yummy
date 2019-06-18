@@ -1,7 +1,6 @@
 package yummy.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Order implements Serializable{
