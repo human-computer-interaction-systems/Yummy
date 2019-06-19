@@ -20,6 +20,199 @@
      <link rel="stylesheet" type="text/css" href="./css1/password.css">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+
+    <style type="text/css">
+        .restaurant{
+            background-color: #fff;
+            border-bottom: 1px #f5f5f5 solid;
+            width: 48%;
+            height: 150px;
+            float: left;
+            font-size: 12px;
+            position: relative;
+            margin: 6px;
+        }
+
+        .restaurant-logo{
+            padding: 20px;
+            color: #999;
+            text-align: center;
+            float: left;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .restaurant-logo-icon{
+            display: block;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .restaurant-content{
+            padding: 20px;
+        }
+        .restaurant-title{
+            font-size: 16px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #333;
+        }
+        .restaurant-address{
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .shopmenu-food-price {
+            bottom: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #f74342;
+        }
+
+        .shopmenu-food-button{
+            float: right;
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            border: 0;
+            cursor: pointer;
+            width: 90px;
+            height: 26px;
+            line-height: 26px;
+            border-radius: 20px;
+            text-align: center;
+            outline: 0;
+            display: inline-block;
+            background-color: #0089dc;
+            color: #fff;
+        }
+
+        .star-rating {
+            unicode-bidi: bidi-override;
+            color: #ddd;
+            font-size: 0;
+            height: 20px;
+            margin: 0;
+            position: relative;
+            display: table;
+            padding: 0;
+            text-shadow: 0px 1px 0 #a2a2a2;
+        }
+
+        .star-rating span {
+            padding: 5px;
+            font-size: 15px;
+        }
+
+        .star-rating span:after {
+            content: "★";
+        }
+
+        .star-rating-top {
+            color: #FFD700;
+            padding: 0;
+            position: absolute;
+            z-index: 1;
+            display: block;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .star-rating-bottom {
+            padding: 0;
+            display: block;
+            z-index: 0;
+        }
+
+        .shopguide {
+            background: url(images/shop-bg.jpg) no-repeat;
+            background-size: cover;
+            padding-top: 48px;
+        }
+
+        .shopguide .container {
+            position: relative;
+            display: table;
+            height: 142px;
+        }
+
+        .shopguide-info {
+            position: relative;
+            display: table-cell;
+            vertical-align: middle;
+            color: #fff;
+            z-index: 1;
+        }
+
+        .shopguide-info>img {
+            margin-right: 15px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 4px solid #FFF;
+            border: 4px solid rgba(255,255,255,.3);
+            vertical-align: middle;
+        }
+
+        .shopguide-info-wrapper{
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .shopguide-info h1 {
+            font-size: 30px;
+            max-width: 270px;
+            display: inline-block;
+            vertical-align: middle;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            font-weight: 400;
+            color: #fff;
+        }
+
+        .shopguide-server {
+            display: table-cell;
+            padding-right: 100px;
+            vertical-align: middle;
+            color: #fff;
+            text-align: right;
+            width: 490px;
+        }
+
+        .shopguide-server>span:first-child {
+            margin-left: 0;
+        }
+
+        .shopguide-server>span {
+            display: inline-block;
+            margin-left: 30px;
+            vertical-align: top;
+            text-align: center;
+        }
+
+        em{
+            font-style: normal;
+            font-weight: 400;
+            font-size:18px;
+        }
+
+        .shopguide-server-value {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 3px;
+            font-size: 20px;
+        }
+
+
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -116,7 +309,47 @@ function GetQueryString(name)
 }
 function show(){
 	var rid = (GetQueryString("rid"));
-	var rgoods = JSON.parse(sessionStorage.getItem('rgoods'));
+	var restaurant = JSON.parse(sessionStorage.getItem('restaurant_'+rid));
+	var rgoods = restaurant.rgoods;
+	$("#title").text(restaurant.rname);
+	$("#address").text(restaurant.raddress);
+	for(var i=0;i<rgoods.length;i++){
+	    $("#goodsList").append("<div class=\"restaurant\">\n" +
+            "                            <div class=\"restaurant-logo\">\n" +
+            "                                <a>\n" +
+            "                                    <img class=\"restaurant-logo-icon\" src=\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560838083846&di=04c5d1b32b25162f7836f6b3db8b2000&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20151127%2F1448617714957094.jpg\">\n" +
+            "                                </a>\n" +
+            "                            </div>\n" +
+            "                            <div class=\"restaurant-content\">\n" +
+            "                                <h3 class=\"restaurant-title\">"+rgoods[i].foodName+"</h3>\n" +
+            "                                <div class=\"restaurant-address\">\n" +
+            "                                    介绍111\n" +
+            "                                </div>\n" +
+            "                                <div class=\"star-rating\">\n" +
+            "                                    <div class=\"star-rating-top\" style=\"width: 50%\">\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                    </div>\n" +
+            "                                    <div class=\"star-rating-bottom\">\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                        <span></span>\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                                <div class=\"shopmenu-food-price\">\n" +
+            "                                    ¥ "+rgoods[i].price+"\n" +
+            "                                </div>\n" +
+            "\n" +
+            "                                <button class=\"shopmenu-food-button\" onclick='addToCart("+i+")'>加入购物车</button>\n" +
+            "                            </div>\n" +
+            "                        </div>")
+    }
+
 	var tbody = document.getElementById('rgoods');
 	for (var i = 0; i < rgoods.length; i++) {
         var trow = getDataRow(rgoods[i]); //定义一个方法,返回tr数据
@@ -131,11 +364,13 @@ function show(){
 		dataType:"json",
 		data:{"rid":rid},
 		success:function(data){
-			var tbody2 = document.getElementById('discounts');
-			for (var i = 0; i < data.length; i++) {
-		        var trow = addDiscounts(data[i]); //定义一个方法,返回tr数据
-				tbody2.appendChild(trow);
-		    }
+		    var discount = "";
+			var i = 0;
+            for (; i < data.length-1; i++) {
+                discount += "满"+data[i].amount+"减"+data[i].discount+" ";
+            }
+            discount += "满"+data[i].amount+"减"+data[i].discount+" ";
+		    $("#discount").text(discount)
 		}
 		});
 	
@@ -227,7 +462,14 @@ function getDataRow(h){
 	 cancelCell.appendChild(btnDel);  //把删除按钮加入td，别忘了
 	 
 	 return row; //返回tr数据	 
-}	
+}
+
+function addToCart(i){
+    var rid = (GetQueryString("rid"));
+    var restaurant = JSON.parse(sessionStorage.getItem('restaurant_'+rid));
+    var rgoods = restaurant.rgoods;
+}
+
 function addNewGoods(h){
 	//新添加情况
 	 var row = document.createElement('tr'); //创建行
@@ -247,23 +489,13 @@ function addNewGoods(h){
 	 return row; //返回tr数据	 
 }	  
 
-function addDiscounts(h){
-	 var row = document.createElement('tr'); //创建行
 
-	 var idCell = document.createElement('td'); //
-	 idCell.innerHTML = h.amount; //填充数据
-	 row.appendChild(idCell); //加入行  ，下面类似
-	 
-	 var nameCell = document.createElement('td');//
-	 nameCell.innerHTML = h.discount;
-	 row.appendChild(nameCell);
-	 
-	 return row; //返回tr数据	 
-}	  
-
+$(function(){
+    show();
+});
 </script>
 </head>
-<body class="fix-header fix-sidebar card-no-border" onload="show()">
+<body class="fix-header fix-sidebar card-no-border">
 <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -384,7 +616,54 @@ function addDiscounts(h){
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+
+                <div class="shopguide">
+                    <div class="container">
+                        <div class="shopguide-info">
+                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560838083846&di=04c5d1b32b25162f7836f6b3db8b2000&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20151127%2F1448617714957094.jpg">
+                            <div class="shopguide-info-wrapper">
+                                <div>
+                                    <h1 id="title">
+                                    </h1>
+                                </div>
+                                <div class="star-rating">
+                                    <div class="star-rating-top" style="width: 50%">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                    <div class="star-rating-bottom">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="shopguide-server">
+                            <span>
+                                <em>地址</em>
+                                <em class="shopguide-server-value" id="address">111</em>
+                            </span>
+
+                            <span>
+                                <em>优惠活动</em>
+                                <em class="shopguide-server-value" id="discount"></em>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row">
+
+                    <div class="col-lg-12" id="goodsList">
+
+                    </div>
+
                     <!-- column -->
                     <div class="col-lg-12">
                         <div class="card">
@@ -408,27 +687,7 @@ function addDiscounts(h){
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h4 class="card-title" id="resName" name="resName"></h4>
-                                <div class="table-responsive">
-                                    <table class="table" id="discountsTable">
-                                        <thead>
-                                            <tr>
-                                                <th>满</th>
-                                                <th>减</th>                                              
-                                            </tr>
-                                        </thead>
-                                        <tbody id="discounts">
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                     
                 </div>
                 

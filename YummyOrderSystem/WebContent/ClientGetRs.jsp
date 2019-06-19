@@ -111,6 +111,45 @@
         }
 
 
+        .aui-palace-grid {
+            position: relative;
+            float: left;
+            padding: 1px;
+            width: 16.6%;
+            box-sizing: border-box;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+
+        .aui-palace-grid:hover {
+            background-color: #f5f5f5;
+        }
+
+        .aui-palace-grid-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto;
+        }
+
+        .aui-palace-grid-icon img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .aui-palace-grid-text {
+            display: block;
+            text-align: center;
+            color: #333;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            padding-top: 0.2rem;
+        }
+
+
 
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -135,7 +174,8 @@ function show(){
 				    var list = data[key];
 				    for(var i=0;i<list.length;i++) {
                         var dataValue = list[i];
-                        $("#restaurant-list").append("<a class=\"restaurant\">\n" +
+                        sessionStorage.setItem('restaurant_'+dataValue.rid, JSON.stringify(dataValue));
+                        $("#restaurant-list").append("<a class=\"restaurant\" href=\"ClientNewOrder.jsp?rid="+dataValue.rid+"\">\n" +
                             "                        <div class=\"restaurant-logo\">\n" +
                             "                            <img class=\"restaurant-logo-icon\" width=\"80px\" height=\"80px\" src=\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560838083846&di=04c5d1b32b25162f7836f6b3db8b2000&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20151127%2F1448617714957094.jpg\">\n" +
                             "                        </div>\n" +
@@ -166,6 +206,7 @@ function show(){
 			}
 			});
 }
+
 
  </script>
 </head>
@@ -292,9 +333,64 @@ function show(){
                 <!-- ============================================================== -->
 
 
-                <div>
+                <div class="row" style="background-color: #fff">
 
+                    <a class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="images/all.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>全部</h2>
+                        </div>
+                    </a>
+
+                    <a class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="images/dessert.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>甜品饮品</h2>
+                        </div>
+                    </a>
+
+                    <a class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="images/fastFood.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>速食简餐</h2>
+                        </div>
+                    </a>
+
+                    <a class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="images/bbq.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>烧烤海鲜</h2>
+                        </div>
+                    </a>
+
+                    <a class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="images/fruit.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>生鲜水果</h2>
+                        </div>
+                    </a>
+
+                    <a class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="images/necessities.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>生活日用</h2>
+                        </div>
+                    </a>
                 </div>
+
+                <br><br>
 
 
                 <div class="row" id="restaurant-list">
