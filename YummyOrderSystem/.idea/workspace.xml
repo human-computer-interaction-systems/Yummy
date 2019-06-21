@@ -7,16 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cfbd28c-97df-4a76-b3ef-c932606f4d45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/WebContent/css1/cart.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/css1/toastr.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/css1/toastr.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/images/food.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/statistics/js/common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/statistics/js/fly.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebContent/statistics/js/requestAnimationFrame.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/WebContent/statistics/js/cart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebContent/ClientNewOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/ClientNewOrder.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebContent/css1/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/WebContent/css1/cart.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/YummyOrderSystem_Web_exploded/ClientNewOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/YummyOrderSystem_Web_exploded/ClientNewOrder.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/YummyOrderSystem_Web_exploded/css1/cart.css" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/YummyOrderSystem_Web_exploded/css1/cart.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,9 +36,9 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="4" />
+          <entry key="css" value="5" />
           <entry key="java" value="18" />
-          <entry key="js" value="7" />
+          <entry key="js" value="11" />
           <entry key="jsp" value="7" />
           <entry key="png" value="3" />
           <entry key="xml" value="2" />
@@ -50,26 +46,28 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="4" />
+          <entry key="CSS" value="5" />
           <entry key="Image" value="3" />
           <entry key="JAVA" value="18" />
           <entry key="JSP" value="7" />
-          <entry key="JavaScript" value="7" />
+          <entry key="JavaScript" value="11" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="79" />
-          <entry key="jsp" value="4297" />
+          <entry key="css" value="96" />
+          <entry key="js" value="7" />
+          <entry key="jsp" value="4604" />
           <entry key="xml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="79" />
+          <entry key="CSS" value="96" />
           <entry key="HTML" value="2" />
-          <entry key="JSP" value="4295" />
+          <entry key="JSP" value="4602" />
+          <entry key="JavaScript" value="7" />
           <entry key="XML" value="8" />
         </counts>
       </usages-collector>
@@ -98,8 +96,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebContent/ClientNewOrder.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="796" column="33" selection-start-line="796" selection-start-column="33" selection-end-line="796" selection-end-column="33" />
+            <state relative-caret-position="-3570">
+              <caret line="421" column="4" selection-start-line="421" selection-start-column="4" selection-end-line="421" selection-end-column="4" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#li#0;n#!!top" expanded="true" />
@@ -108,7 +106,26 @@
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#42345#42352#1#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/css1/cart.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="997" column="13" selection-start-line="997" selection-start-column="13" selection-end-line="997" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebContent/statistics/js/cart.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-331">
+              <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -131,15 +148,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebContent/css1/cart.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="576" column="15" selection-start-line="576" selection-start-column="15" selection-end-line="576" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -149,6 +157,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Modal.prototype.show</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -160,6 +173,7 @@
         <option value="$PROJECT_DIR$/WebContent/ClientGetRs.jsp" />
         <option value="$PROJECT_DIR$/WebContent/css1/jquery-1.11.1.min.js" />
         <option value="$PROJECT_DIR$/WebContent/statistics/js/common.js" />
+        <option value="$PROJECT_DIR$/WebContent/statistics/js/cart.js" />
         <option value="$PROJECT_DIR$/WebContent/css1/cart.css" />
         <option value="$PROJECT_DIR$/WebContent/ClientNewOrder.jsp" />
       </list>
@@ -235,37 +249,6 @@
               <item name="YummyOrderSystem" type="462c0819:PsiDirectoryNode" />
               <item name="WebContent" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="YummyOrderSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YummyOrderSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
-              <item name="css1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="YummyOrderSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YummyOrderSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="YummyOrderSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YummyOrderSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="YummyOrderSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YummyOrderSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
-              <item name="statistics" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="YummyOrderSystem" type="b2602c69:ProjectViewProjectNode" />
-              <item name="YummyOrderSystem" type="462c0819:PsiDirectoryNode" />
-              <item name="WebContent" type="462c0819:PsiDirectoryNode" />
-              <item name="statistics" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -279,7 +262,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561075297106" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561088726011" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -395,12 +378,12 @@
       <option name="presentableId" value="Default" />
       <updated>1560858833779</updated>
       <workItem from="1560858837319" duration="1414000" />
-      <workItem from="1560860274855" duration="36735000" />
+      <workItem from="1560860274855" duration="41474000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38149000" />
+    <option name="totallyTimeSpent" value="42888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -536,29 +519,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/statistics/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/css1/cart.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="576" column="15" selection-start-line="576" selection-start-column="15" selection-end-line="576" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/css1/toastr.min.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebContent/ClientGetRs.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="176" column="49" lean-forward="true" selection-start-line="176" selection-end-line="177" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/yummy/model/Goods.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -570,6 +532,32 @@
     <entry file="file://$PROJECT_DIR$/WebContent/css1/toastr.min.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/statistics/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="100" selection-start-line="100" selection-end-line="100" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/assets/plugins/bootstrap/js/bootstrap.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/assets/plugins/bootstrap/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="1735" column="24" selection-start-line="1735" selection-start-column="4" selection-end-line="1735" selection-end-column="24" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/yummy/model/Discount.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -577,10 +565,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/ClientGetRs.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="176" column="49" lean-forward="true" selection-start-line="176" selection-end-line="177" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/statistics/js/cart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-331">
+          <caret line="2" column="10" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebContent/css1/cart.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="997" column="13" selection-start-line="997" selection-start-column="13" selection-end-line="997" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/WebContent/ClientNewOrder.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="796" column="33" selection-start-line="796" selection-start-column="33" selection-end-line="796" selection-end-column="33" />
+        <state relative-caret-position="-3570">
+          <caret line="421" column="4" selection-start-line="421" selection-start-column="4" selection-end-line="421" selection-end-column="4" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#li#0;n#!!top" expanded="true" />
@@ -589,6 +598,7 @@
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#ul#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#42345#42352#1#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

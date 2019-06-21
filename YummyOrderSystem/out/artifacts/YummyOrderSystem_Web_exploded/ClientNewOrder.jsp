@@ -419,85 +419,7 @@
 <![endif]-->
 <script src="./css1/jquery-3.3.1.min.js"></script>
 <script language="javascript" type="text/javascript">
-var maxtime = 120;//允许输入密码时长
-function payment(){
-	if($("#totalAmount").val() == ""){
-		alert("您未选购商品！请添加商品。");
-		return;
-	}
-	var identity = ${sessionScope.client.balance};
-	if(Number($("#totalAmount").val()) > Number(identity)){
-		alert("您账户余额不足！请重新选购商品。");
-		return;
-	}
-	 $('#div_1').show();
-	 $('#div_2').show();
-	 window.setInterval(function(){CountDown();}, 1000); 
-}
-
-function CountDown() {
-	if(maxtime>0){
-		--maxtime;
-	}else{
-		alert("超过最大时长，订单取消！");
-		location.reload();//重新加载页面清空表项
-	}
-	$("#time").val("您还有："+maxtime+" 秒的时间完成支付。");
-}
-
-function pay(){
-	//判断密码
-	var paymentCode = ${sessionScope.client.paymentCode};
-	if($("#paymentCode").val() != paymentCode){
-		alert("您输入支付密码不正确！请重新输入。");
-		return;
-	}
-	
-	//整理数据与数据库连接,此时数据合法
-	var rid = (GetQueryString("rid"));
-	var caddress = $("#caddress").val();
-	//整理商品数据
-	var rgoods = [];
-	var tbody = document.getElementById('mycart');
-	var tableObj = document.getElementById("mycartTable");
-	
-	for (var i = 1; i < tableObj.rows.length; i++) {  //遍历Table的所有Row
-	 	//增加数量和总价
-	 	var agoods = new Object();
-		agoods.rid = rid;
-		agoods.foodName = tableObj.rows[i].cells[0].innerHTML;
-		agoods.number = tableObj.rows[i].cells[1].innerHTML;
-		agoods.amount = tableObj.rows[i].cells[2].innerHTML;
-		rgoods.push(agoods);
-	 }
-	//var obj = JSON.stringify(rgoods);
-	var amount = $("#realAmount").val();
-	var orderInfo = {
-		rid: rid,
-		cid: ${sessionScope.client.cid},
-		goods: rgoods,
-		caddress: caddress,
-		totalAmount: amount
-	}
-	
-	var jsonData = JSON.stringify(orderInfo);
-	
-	 $.ajaxSetup({cache:false})
-		$.ajax({
-			type:"post",
-			url:"ClientNewOrderServlet",
-			dataType:"json",
-			data:{"data":jsonData},
-			success:function(data) {
-				
-			}
-					
-			});
-	 
-	 alert("下单成功！");
-	 window.location.href='ClientOrders.jsp';
-	
-}
+    
 
 function GetQueryString(name)
 {
@@ -548,12 +470,6 @@ function show(){
             "                        </div>")
     }
 
-	var tbody = document.getElementById('rgoods');
-	for (var i = 0; i < rgoods.length; i++) {
-        var trow = getDataRow(rgoods[i]); //定义一个方法,返回tr数据
-		tbody.appendChild(trow);
-    }
-	$("#resName").text(rid);
 	
 	$.ajaxSetup({cache:false});
 	$.ajax({
@@ -573,94 +489,6 @@ function show(){
 		}
 		});
 	
-}
-function getDataRow(h){
-	 var row = document.createElement('tr'); //创建行
-	 
-	 var idCell = document.createElement('td'); //
-	 idCell.innerHTML = h.foodName; //填充数据
-	 row.appendChild(idCell); //加入行  ，下面类似
-	 
-	 var nameCell = document.createElement('td');//
-	 nameCell.innerHTML = h.price;
-	 row.appendChild(nameCell);
-	 
-	 
-	 var nameCell = document.createElement('td');//
-	 nameCell.innerHTML = h.quantity;
-	 row.appendChild(nameCell);
-	 
-	 //到这里，json中的数据已经添加到表格中，下面为每行末尾添加删除按钮
-	 
-	 var cancelCell = document.createElement('td');//创建第四列，操作列
-	 row.appendChild(cancelCell);
-	 var btnDel = document.createElement('input'); //创建一个input控件
-	 btnDel.setAttribute('type','button'); //type="button"
-	 btnDel.setAttribute('value','加入购物车'); 
-	 
-	 //将选购加入购物车列表
-	 cancelCell.onclick=function(){
-		 var tbody = document.getElementById('mycart');
-		 var tableObj = document.getElementById("mycartTable");
-		 var isNew = true;
-		 for (var i = 0; i < tableObj.rows.length; i++) {  //遍历Table的所有Row
-		 	//增加数量和总价
-			if(tableObj.rows[i].cells[0].innerText == h.foodName){
-				if(Number(tableObj.rows[i].cells[1].innerText) == h.quantity){
-					alert("已经是最大库存，不可再添加！");
-				}else{
-					tableObj.rows[i].cells[1].innerHTML = Number(tableObj.rows[i].cells[1].innerHTML)+1;
-					tableObj.rows[i].cells[2].innerHTML = Number(tableObj.rows[i].cells[2].innerHTML)+h.price;
-				}
-				
-				isNew = false;
-		 	} 
-		 }
-		 //新添加情况
-		 if(isNew){
-			 var trow = addNewGoods(h); //定义一个方法,返回tr数据
-			 tbody.appendChild(trow);
-		 }
-		
-		 var totalNum = 0;
-		 //设置总金额
-		 for (var i = 1; i < tableObj.rows.length; i++) {  //遍历Table的所有Row
-			 	//增加数量和总价
-			totalNum = totalNum + Number(tableObj.rows[i].cells[2].innerHTML);
-		 }
-		 
-		 $("#totalAmount").val(totalNum);
-	 	 
-		 //设置优惠后的金额
-		 var realNum = totalNum;
-		 var tableObj2 = document.getElementById("discountsTable");
-		 
-		 var row = 0;
-		 
-		 for (var i = 1; i < tableObj2.rows.length; i++) {  //遍历Table的所有Row
-			 	//增加数量和总价
-		 	if(realNum > Number(tableObj2.rows[i].cells[0].innerHTML)){
-		 		row = i;
-		 	}
-		 	
-		 }
-		 
-		 if(row > 0){
-			 realNum = realNum - Number(tableObj2.rows[row].cells[1].innerHTML);
-		 }
-		 
-		 var identity = ${sessionScope.client.level};
-		 if(identity == "1"){
-			 realNum = realNum;
-		 }else if(identity == "2"){
-			 realNum = realNum * 0.95;
-		 }
-		 
-		 $("#realAmount").val(realNum.toFixed(2));
-	}
-	 cancelCell.appendChild(btnDel);  //把删除按钮加入td，别忘了
-	 
-	 return row; //返回tr数据	 
 }
 
 function addToCart(i) {
@@ -732,6 +560,7 @@ function removeGoods(btn){
 
 function countAll(){
     var all = 0;
+    var result = 0;
     $("#cartList").find("li").each(function () {
         all += parseInt(this.children[2].children[1].children[2].innerHTML) * parseInt(this.children[2].children[1].children[0].innerHTML.substr(1));
     });
@@ -749,12 +578,14 @@ function countAll(){
     }
 
     if(discount_index >= 0){
-        var result = all-discount[discount_index].discount;
+        result = all-discount[discount_index].discount;
         $("#sum").append("<s>¥"+all+"</s>　¥"+result);
     }
     else{
+        result = all;
         $("#sum").text("¥ "+all);
     }
+    return result;
 }
 
 function goPay(){
@@ -763,29 +594,70 @@ function goPay(){
         toastr.error("您还没有选择商品！");
     }
     else{
-
+        $("#myModal").modal('show');
     }
 }
 
+function confirmPay(){
 
-function addNewGoods(h){
-	//新添加情况
-	 var row = document.createElement('tr'); //创建行
+    //判断密码
+    var paymentCode = ${sessionScope.client.paymentCode};
+    if(getValue() != paymentCode){
+        toastr.error("您输入支付密码不正确！请重新输入。");
+        boxInput.init();
+        return;
+    }
 
-	 var idCell = document.createElement('td'); //
-	 idCell.innerHTML = h.foodName; //填充数据
-	 row.appendChild(idCell); //加入行  ，下面类似
-	 
-	 var nameCell = document.createElement('td');//
-	 nameCell.innerHTML = 1;
-	 row.appendChild(nameCell);
-	 
-	 var nameCell = document.createElement('td');//
-	 nameCell.innerHTML = h.price;
-	 row.appendChild(nameCell);
-	 
-	 return row; //返回tr数据	 
-}	  
+    var identity = ${sessionScope.client.balance};
+    if(countAll() > Number(identity)){
+        toastr.error("您账户余额不足！请重新选购商品。");
+        boxInput.init();
+        return;
+    }
+
+    //整理数据与数据库连接,此时数据合法
+    var rid = (GetQueryString("rid"));
+    var caddress = $("#caddress").val();
+    //整理商品数据
+    var rgoods = [];
+
+
+    $("#cartList").find("li").each(function () {
+        var agoods = new Object();
+        agoods.rid = rid;
+        agoods.foodName = this.getAttribute('foodName');
+        agoods.number = parseInt(this.children[2].children[1].children[2].innerHTML);
+        agoods.amount = parseInt(this.children[2].children[1].children[2].innerHTML) * parseInt(this.children[2].children[1].children[0].innerHTML.substr(1));
+        rgoods.push(agoods);
+    });
+
+    //var obj = JSON.stringify(rgoods);
+    var amount = countAll();
+    var orderInfo = {
+        rid: rid,
+        cid: ${sessionScope.client.cid},
+        goods: rgoods,
+        caddress: caddress,
+        totalAmount: amount
+    };
+
+    var jsonData = JSON.stringify(orderInfo);
+
+    $.ajaxSetup({cache:false})
+    $.ajax({
+        type:"post",
+        url:"ClientNewOrderServlet",
+        dataType:"json",
+        data:{"data":jsonData},
+        success:function(data) {
+
+        }
+
+    });
+
+    toastr.success("下单成功！");
+    setTimeout("window.location.href='ClientOrders.jsp'", 3000 );
+}
 
 
 $(function(){
@@ -805,6 +677,17 @@ $(function(){
         showMethod: "fadeIn",
         hideMethod: "fadeOut"
     };
+    $('#myModal').on('shown.bs.modal', function () {
+        var $this = $(this);
+        var dialog = $this.find('.modal-dialog');
+
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        var top = ($(window).height() - dialog.height()) / 2;
+        dialog.css({
+            marginTop:top
+        });
+    });
 });
 </script>
 </head>
@@ -977,101 +860,6 @@ $(function(){
 
                     </div>
 
-                    <!-- column -->
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h4 class="card-title" id="resName" name="resName"></h4>
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>商品名称</th>
-                                                <th>单价</th>
-                                                <th>库存数量</th>
-                                                <th>加入购物车</th>                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody id="rgoods">
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                </div>
-                
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <h4 class="card-title">我的购物车</h4>
-                                <div class="table-responsive">
-                                    <table class="table" id="mycartTable">
-                                        <thead>
-                                            <tr>
-                                                <th>商品名称</th>
-                                                <th>购买数量</th>
-                                                <th>价格</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="mycart">
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="form-group">
-                                        <label class="col-md-12">总金额</label>
-                                        <div class="col-md-12">
-                                            <input type="text" style="border-radius:4px" id="totalAmount" name="totalAmount" readonly>
-                                        </div>
-                                        
-                                 </div>
-                                 
-                                 <div class="form-group">
-                                        <label class="col-md-12">实付</label>
-                                        <div class="col-md-12">
-                                            <input type="text" style="border-radius:4px" id="realAmount" name="realAmount" readonly>
-                                        </div>
-                                        
-                                 </div>
-                                 
-                                 <div class="form-group">
-                                        <label class="col-sm-12">选择你的送餐地址</label>
-                                        <div class="col-sm-12">
-                                            <select class="form-control form-control-line" id="caddress" name="caddress">
-                                                <c:forEach items="${sessionScope.client.addresses}" var="item" varStatus="status">
-													<option>${item}</option>
-												</c:forEach>                                  
-                                            </select>
-                                        </div>
-                                    </div>
-                                 
-                                 <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success" onclick="payment()">去结算</button>
-                                        </div>
-                                    </div>
-                                    <div class="form-group" id="div_1" style="display:none">
-                                        <label class="col-md-12">请输入您的支付密码</label>
-                                        <div class="col-md-12">
-                         				    <input type="text" style="border-radius:4px" id="paymentCode" name="paymentCode" maxlength="6" onkeyup="value=value.replace(/[^\d]/g,'')">
-                         				     <input type="text" style="border-radius:4px" id="time" name="time" readonly>
-                                        </div>
-                                        
-                                 </div>
-                                 <div class="form-group" id="div_2" style="display:none">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success" onclick="pay()">确认</button>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 
@@ -1123,6 +911,44 @@ $(function(){
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">输入支付密码</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="wrap">
+                            <div class="form-group">
+                                <label class="col-sm-12">选择你的送餐地址</label>
+                                <div class="col-sm-12">
+                                    <select class="form-control form-control-line" id="caddress" name="caddress">
+                                        <c:forEach items="${sessionScope.client.addresses}" var="item" varStatus="status">
+                                            <option>${item}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="inputBoxContainer" id="inputBoxContainer">
+                                <input type="text" class="realInput"/>
+                                <div class="bogusInput">
+                                    <input type="password" maxlength="6" disabled/>
+                                    <input type="password" maxlength="6" disabled/>
+                                    <input type="password" maxlength="6" disabled/>
+                                    <input type="password" maxlength="6" disabled/>
+                                    <input type="password" maxlength="6" disabled/>
+                                    <input type="password" maxlength="6" disabled/>
+                                </div>
+                            </div>
+                            <button class="confirmButton" onclick="confirmPay()">支付</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal -->
+        </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
@@ -1151,5 +977,6 @@ $(function(){
     <script type="text/javascript" src="statistics/js/fly.js"></script>
     <script type="text/javascript" src="statistics/js/common.js"></script>
     <script type="text/javascript" src="css1/toastr.min.js"></script>
+    <script type="text/javascript" src="statistics/js/cart.js"></script>
 </body>
 </html>
