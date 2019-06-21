@@ -17,6 +17,7 @@ public class Goods implements Serializable{
 	private double amount;//一张订单订购该物品金额
 	private String url;//该商品的URL
 	private double score;//该商品的评分
+	private String introduction;//该商品的简要描述
 
 	public Goods() {
 	}
@@ -72,5 +73,13 @@ public class Goods implements Serializable{
 
 	public void setScore(double score) {
 		this.score = score;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
 	}
 }

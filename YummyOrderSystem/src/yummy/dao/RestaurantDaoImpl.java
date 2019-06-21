@@ -161,6 +161,7 @@ public class RestaurantDaoImpl implements RestaurantDao{
 				goods.setQuantity(result.getInt("quantity"));
 				goods.setUrl(result.getString("img"));
 				goods.setScore(result.getDouble("score"));
+				goods.setIntroduction(result.getString("introduction"));
 				goods.setAmount(0);
 				goods.setNumber(0);
 				ArrayList<Goods> tempGoods = restaurant.getRgoods();

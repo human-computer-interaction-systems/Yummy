@@ -242,6 +242,7 @@ public class ManagerDaoImpl implements ManagerDao{
 					goods.setQuantity(result2.getInt("quantity"));
 					goods.setUrl(result2.getString("img"));
 					goods.setScore(result2.getDouble("score"));
+					goods.setIntroduction(result2.getString("introduction"));
 					goods.setAmount(0);
 					goods.setNumber(0);
 					ArrayList<Goods> tempGoods = restaurant.getRgoods();
