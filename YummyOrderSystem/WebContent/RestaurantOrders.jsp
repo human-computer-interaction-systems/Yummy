@@ -40,26 +40,64 @@ function show(){
 					if(key=="undelivered"){
 						var dataValue = data[key];
 						var tbody = document.getElementById('undelivered');
-						for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+
+                        if(dataValue.length==0){
+                            var trow=getNoData();
+                            tbody.appendChild(trow);
+                        }else{
+
+                            for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+                                var trow = getDataRow1(dataValue[i]); //定义一个方法,返回tr数据
+                                tbody.appendChild(trow);
+                            }
+                        }
+
+
+						/*for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
 							  var trow = getDataRow1(dataValue[i]); //定义一个方法,返回tr数据
 						  	  tbody.appendChild(trow);
-						}
+						}*/
 					}
 					if(key=="historyDelivered"){
 						var dataValue = data[key];
 						var tbody = document.getElementById('historyDelivered');
-						for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+
+                        if(dataValue.length==0){
+                            var trow=getNoData();
+                            tbody.appendChild(trow);
+                        }else{
+
+                            for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+                                var trow = getDataRow2(dataValue[i]); //定义一个方法,返回tr数据
+                                tbody.appendChild(trow);
+                            }
+                        }
+
+
+						/*for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
 							  var trow = getDataRow2(dataValue[i]); //定义一个方法,返回tr数据
 						  	  tbody.appendChild(trow);
-						}
+						}*/
 					}
 					if(key=="historyUndelivered"){
 						var dataValue = data[key];
 						var tbody = document.getElementById('historyUndelivered');
-						for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+
+                        if(dataValue.length==0){
+                            var trow=getNoData();
+                            tbody.appendChild(trow);
+                        }else{
+
+                            for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+                                var trow = getDataRow3(dataValue[i]); //定义一个方法,返回tr数据
+                                tbody.appendChild(trow);
+                            }
+                        }
+
+						/*for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
 							  var trow = getDataRow3(dataValue[i]); //定义一个方法,返回tr数据
 						  	  tbody.appendChild(trow);
-						}
+						}*/
 					}
 					
 				}
@@ -68,6 +106,20 @@ function show(){
 			}
 			});
  }
+
+function getNoData(){
+    var row = document.createElement('tr'); //创建行
+
+    var idCell = document.createElement('td'); //
+    idCell.innerHTML ="当前暂无订单"; //填充数据
+    row.appendChild(idCell); //加入行  ，下面类似
+
+    return row;
+
+}
+
+
+
  function getDataRow1(h){
 		 var row = document.createElement('tr'); //创建行
 		 

@@ -40,26 +40,65 @@
 					if(key=="undelivered"){
 						var dataValue = data[key];
 						var tbody = document.getElementById('undelivered');
-						for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+
+
+						if(dataValue.length==0){
+                            var trow=getNoData();
+                            tbody.appendChild(trow);
+                        }else{
+                            for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+                                var trow = getDataRow1(dataValue[i]); //定义一个方法,返回tr数据
+                                tbody.appendChild(trow);
+                            }
+						}
+
+
+						/*for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
 							  var trow = getDataRow1(dataValue[i]); //定义一个方法,返回tr数据
 						  	  tbody.appendChild(trow);
-						}
+						}*/
 					}
 					if(key=="historyDelivered"){
 						var dataValue = data[key];
 						var tbody = document.getElementById('historyDelivered');
-						for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+
+
+
+
+                        if(dataValue.length==0){
+                            var trow=getNoData();
+                            tbody.appendChild(trow);
+                        }else{
+                            for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+                                var trow = getDataRow2(dataValue[i]); //定义一个方法,返回tr数据
+                                tbody.appendChild(trow);
+                            }
+                        }
+						/*for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
 							  var trow = getDataRow2(dataValue[i]); //定义一个方法,返回tr数据
 						  	  tbody.appendChild(trow);
-						}
+						}*/
 					}
 					if(key=="historyUndelivered"){
 						var dataValue = data[key];
 						var tbody = document.getElementById('historyUndelivered');
-						for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+
+
+
+                        if(dataValue.length==0){
+                            var trow=getNoData();
+                            tbody.appendChild(trow);
+                        }else{
+                            for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
+                                var trow = getDataRow3(dataValue[i]); //定义一个方法,返回tr数据
+                                tbody.appendChild(trow);
+                            }
+                        }
+
+						/*for(var i = 0;i < dataValue.length; i++){ //遍历一下json数据
 							  var trow = getDataRow3(dataValue[i]); //定义一个方法,返回tr数据
 						  	  tbody.appendChild(trow);
-						}
+						}*/
 					}
 					
 				}
@@ -68,6 +107,19 @@
 			}
 			});
   }
+
+
+  function getNoData(){
+      var row = document.createElement('tr'); //创建行
+
+      var idCell = document.createElement('td'); //
+      idCell.innerHTML ="当前暂无订单"; //填充数据
+      row.appendChild(idCell); //加入行  ，下面类似
+
+      return row;
+
+  }
+
   function getDataRow1(h){
 		 var row = document.createElement('tr'); //创建行
 		 
@@ -220,7 +272,7 @@
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="ClientGetRs.jsp">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             
@@ -259,7 +311,7 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="ClientInfo.jsp"  aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
                         </li>
                     </ul>
                 </div>
@@ -337,6 +389,7 @@
                                                 <th>付款金额</th>
                                                 <th>是否退订</th>                                                 
                                             </tr>
+
                                         </thead>
                                         <tbody id="undelivered">
                                           
