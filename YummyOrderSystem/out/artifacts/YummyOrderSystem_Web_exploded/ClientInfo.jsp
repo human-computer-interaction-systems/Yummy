@@ -15,20 +15,25 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon.png">
     <title>ClientInfo</title>
+    
     <!-- Bootstrap Core CSS -->
     <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="./lite/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css1/toastr.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
    <!--[if lt IE 9]>
     <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script src="./css1/jquery-3.3.1.min.js"></script>
-<script src="./css1/echarts.common.min.js"></script>
+    <script src="./css1/jquery-3.3.1.min.js"></script>
+    <script src="./css1/echarts.common.min.js"></script>
+
+
 <script language="javascript" type="text/javascript">
 function cancel(){
 	if(confirm("确定注销会员吗，注销后不可恢复数据。")){
@@ -63,121 +68,44 @@ function show(){
 		$('#yourlevel').html("高级会员"); 
 		
 	}
-	var orders = echarts.init(document.getElementById("orders"));
-	var payInfo = echarts.init(document.getElementById("payInfo"));
-	
-	var cid = ${sessionScope.client.cid};
-	$.ajaxSetup({cache:false});
-	$.ajax({
-		type:"get",
-		url:"ClientStatisticsServlet",
-		dataType:"json",
-		data:{"cid":cid},
-		success:function(data){
-			var ctype1 = Number(data.ctype1);
-			var ctype2 = Number(data.ctype2);
-			var rtype1 = Number(data.rtype1);
-			var rtype2 = Number(data.rtype2);
-			
-			var option = {
-					title:{
-				         text:"订单统计",
-				         x:"center"
-				         },
-				    tooltip : {
-				        trigger: 'item',
-				        formatter: "{a} <br/>{b} : {c} ({d}%)"
-				    },
-				    legend: {
-				        orient : 'vertical',
-				        x : 'left',
-				        data:['送达订单','退订订单']
-				    },
-				    calculable : true,
-				    series : [
-				        {
-				            name:'订单占比',
-				            type:'pie',
-				            radius : ['50%', '70%'],
-				            itemStyle : {
-				                normal : {
-				                    label : {
-				                        show : false
-				                    },
-				                    labelLine : {
-				                        show : false
-				                    }
-				                },
-				                emphasis : {
-				                    label : {
-				                        show : true,
-				                        position : 'center',
-				                        textStyle : {
-				                            fontSize : '18',
-				                            fontWeight : 'bold'
-				                        }
-				                    }
-				                }
-				            },
-				            data:[
-				                {value:ctype1, name:'送达订单'},
-				                {value:ctype2, name:'退订订单'}
-				            ]
-				        }
-				    ]
-				};
-			var option2 = {
-					title:{
-				         text:"消费统计",
-				         x:"center"
-				         },
-				    tooltip : {
-				        trigger: 'item',
-				        formatter: "{a} <br/>{b} : {c} ({d}%)"
-				    },
-				    legend: {
-				        orient : 'vertical',
-				        x : 'left',
-				        data:['超过100的订单','小额订单']
-				    },
-				    calculable : true,
-				    series : [
-				        {
-				            name:'占比',
-				            type:'pie',
-				            radius : ['50%', '70%'],
-				            itemStyle : {
-				                normal : {
-				                    label : {
-				                        show : false
-				                    },
-				                    labelLine : {
-				                        show : false
-				                    }
-				                },
-				                emphasis : {
-				                    label : {
-				                        show : true,
-				                        position : 'center',
-				                        textStyle : {
-				                            fontSize : '18',
-				                            fontWeight : 'bold'
-				                        }
-				                    }
-				                }
-				            },
-				            data:[
-				                {value:rtype1, name:'超过100的订单'},
-				                {value:rtype2, name:'小额订单'}
-				            ]
-				        }
-				    ]
-				};
-			orders.setOption(option);
-		 	payInfo.setOption(option2);
-		}
-		});
-	//alert(jsondata);
+
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: true,
+        positionClass: "toast-top-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "2000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+    $('#infoModal').on('shown.bs.modal', function () {
+        var $this = $(this);
+        var dialog = $this.find('.modal-dialog');
+
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        var top = ($(window).height() - dialog.height()) / 2;
+        dialog.css({
+            marginTop:top
+        });
+    });
+    $('#addressModal').on('shown.bs.modal', function () {
+        var $this = $(this);
+        var dialog = $this.find('.modal-dialog');
+
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        var top = ($(window).height() - dialog.height()) / 2;
+        dialog.css({
+            marginTop:top
+        });
+    });
 }
 </script>
 </head>
@@ -309,60 +237,7 @@ function show(){
                 <!-- ============================================================== -->
                 
                 <!-- Row -->
-                <div class="row">
-                    <!-- Column -->
-                    <div class="col-lg-8 col-md-7">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-wrap">
-                                            <div>
-                                                <h3 class="card-title">Sales Overview</h3>
-                                                <h6 class="card-subtitle">Ample Admin Vs Pixel Admin</h6> </div>
-                                            <div class="ml-auto">
-                                                <ul class="list-inline">
-                                                    <li>
-                                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Ample</h6> </li>
-                                                    <li>
-                                                        <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Pixel</h6> </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="amp-pxl" style="height: 360px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-5">
-                         <!-- Column -->
-                        <div class="card">
-                            <img class="card-img-top" src="./assets/images/background/profile-bg.jpg" alt="Card image cap">
-                            <div class="card-block little-profile text-center">
-                                <div class="pro-img"><img src="./assets/images/users/4.jpg" alt="user" /></div>
-                                <h3 class="m-b-0" >${sessionScope.client.cname}</h3>
-                                <p>${sessionScope.client.email}</p>
-                                
-                           		<div class="row text-center m-t-20">
-                           			 <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h5 class="m-b-0 font-light" ><span id="yourlevel" style="color:#38D0D1;font-size:13px" > </span></h5><small>会员级别</small></div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h5 class="m-b-0 font-light"><span style="color:#38D0D1">${sessionScope.client.phone}</span></h5><small>电话</small></div>
-                                    <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h5 class="m-b-0 font-light" ><span id="yourbalance" style="color:#38D0D1"> </span></h5><small>余额</small></div>
-                                   
-                                </div>
-                           
-                            </div> 
-                               
-                            
-                        </div>
-                    </div>
-                </div>
-                <!-- Row -->
+                
                 
                 <!-- Row -->
                 <div class="row">
@@ -372,7 +247,50 @@ function show(){
                     <!-- Column -->
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
+
+
                             <div class="card-block">
+
+                                <div class="row" style="height: 50px;">
+                                    <img src="images/edit.png" style="top:5%;right:5%;position:absolute;height: 30px;width: 30px; cursor: pointer;float: right;" data-toggle="modal" data-target="#infoModal">
+                                </div>
+
+                                <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">修改会员信息</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                    <div class="card-block">
+                                                        <form class="form-horizontal form-material">
+                                                            <div class="form-group">
+                                                                <label class="col-md-12">会员名称</label>
+                                                                <div class="col-md-12">
+                                                                    <input type="text" class="form-control form-control-line"  id="name" name="name">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label class="col-md-12">电话号码</label>
+                                                                <div class="col-md-12">
+                                                                    <input type="text" class="form-control form-control-line" id="phone" name="phone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                                </div>
+                                                            </div>
+
+                                                        </form>
+                                                    </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">提交更改</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal -->
+                                </div>
+
+
                                 <form class="form-horizontal form-material">
                                     <div class="form-group">
                                         <label class="col-md-12">姓名</label>
@@ -380,12 +298,14 @@ function show(){
                                             <input type="text" class="form-control form-control-line" value="${sessionScope.client.cname}"  readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" >
                                         <label class="col-md-12">电子邮箱</label>
-                                        <div class="col-md-12">
-                                            <input type="text" class="form-control form-control-line"  id="example-email" value="${sessionScope.client.email}" readonly>
+                                        <div class="col-md-12" style="display: block;">                                       	
+                                            <input type="text" class="form-control form-control-line"  id="example-email" value="${sessionScope.client.email}" readonly>                                       		
                                         </div>
+                             
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-md-12">电话</label>
                                         <div class="col-md-12">
@@ -404,8 +324,25 @@ function show(){
                                             <input type="text" class="form-control form-control-line" id="balance" name="balance" readonly>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">送餐地址</label>
+                                            
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Column -->
+                        <div class="card">
+                            <div class="card-block bg-info">
+                                <h3 class="text-white card-title">我的送餐地址</h3>
+                                
+                            </div>
+                            <div class="card-block">
+                                <div class="message-box contact-box">
+                                    <h2 class="add-ct-btn"><button type="button" data-toggle="modal" data-target="#addressModal" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
+                                    <div class="message-widget contact-widget">
+                                        <!-- Message -->
+                                        <div class="form-group">
+                                        
                                         <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -414,7 +351,7 @@ function show(){
                                                 <th>地址</th>
                                             </tr>
                                         </thead>
-                                        <tbody>                                          
+                                        <tbody class="table table-striped">                                          
                                            <c:forEach items="${sessionScope.client.addresses}" var="item" varStatus="status">
 												<tr id="list">
 													<td>${status.count}</td>
@@ -426,65 +363,43 @@ function show(){
                                     </table>
                                 </div>
                                     </div>
-                                    
-                                     <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button class="btn btn-success" onclick="cancel()" type="button">注销会员</button>
-                                        </div>
-                                    </div>
-                                             
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Column -->
-                        <div class="card">
-                            <div class="card-block bg-info">
-                                <h4 class="text-white card-title">My Contacts</h4>
-                                <h6 class="card-subtitle text-white m-b-0 op-5">Checkout my contacts here</h6>
-                            </div>
-                            <div class="card-block">
-                                <div class="message-box contact-box">
-                                    <h2 class="add-ct-btn"><button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
-                                    <div class="message-widget contact-widget">
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="./assets/images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">info@wrappixel.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="./assets/images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Sonu Nigam</h5> <span class="mail-desc">pamela1987@gmail.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <span class="round">A</span> <span class="profile-status away pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Arijit Sinh</h5> <span class="mail-desc">cruise1298.fiplip@gmail.com</span></div>
-                                        </a>
-                                        <!-- Message -->
-                                        <a href="#">
-                                            <div class="user-img"> <img src="./assets/images/users/4.jpg" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
-                                            <div class="mail-contnet">
-                                                <h5>Pavan kumar</h5> <span class="mail-desc">kat@gmail.com</span></div>
-                                        </a>
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" >添加新送餐地址</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="card-block">
+                                                <form class="form-horizontal form-material">
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">新送餐地址</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control form-control-line" id="address" name="address">
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">提交更改</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
+
                         </div>
                     
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                    	<div class="card">
-                            <div class="card-block">
-                            <div id="orders" style="width: 600px;height: 300px;"></div>
-                             <div id="payInfo" style="width: 600px;height: 300px;"></div>
-                          </div>
-                        </div>    
-                   </div>
+                    
                     <!-- Column -->
                 </div>
                 <!-- Row -->
@@ -527,5 +442,7 @@ function show(){
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
+    <script src="css1/toastr.min.js"></script>
+
 </body>
 </html>

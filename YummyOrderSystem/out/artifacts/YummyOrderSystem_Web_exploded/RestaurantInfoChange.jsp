@@ -178,22 +178,22 @@ function check(){
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-block">
-                                <form class="form-horizontal form-material" action="RestaurantInfoChangeServlet" id="curst" method="post" onsubmit="return check()">                                    
+                                <form class="form-horizontal form-material" action="RestaurantInfoChangeServlet" id="curst" method="post" onsubmit="return check()">
                                     <div class="form-group">
                                         <label class="col-md-12">修改餐厅地址</label>
                                         <div class="col-md-12">
                                             <input type="text" class="form-control form-control-line"  id="raddress" name="raddress">
                                         </div>
                                     </div>
-                                  
-                                    
+
+
                                     <div class="form-group">
                                         <label class="col-sm-12">修改餐厅类型</label>
                                         <div class="col-sm-12">
                                             <select class="form-control form-control-line" id="rtype" name="rtype">
                                                 <option></option>
                                                 <option>餐厅</option>
-                                                <option>商店</option>                                              
+                                                <option>商店</option>
                                             </select>
                                         </div>
                                     </div>

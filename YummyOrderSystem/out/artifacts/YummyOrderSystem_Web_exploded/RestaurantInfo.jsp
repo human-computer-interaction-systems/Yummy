@@ -41,121 +41,56 @@ function show(){
 		$("#type").val("超市");
 		
 	}
-	
-	var orders = echarts.init(document.getElementById("orders"));
-	var payInfo = echarts.init(document.getElementById("payInfo"));
-	
-	var rid = ${sessionScope.res.rid};
-	$.ajaxSetup({cache:false});
-	$.ajax({
-		type:"get",
-		url:"RestStatisticsServlet",
-		dataType:"json",
-		data:{"rid":rid},
-		success:function(data){
-			var ctype1 = Number(data.ctype1);
-			var ctype2 = Number(data.ctype2);
-			var rtype1 = Number(data.rtype1);
-			var rtype2 = Number(data.rtype2);
-			
-			var option = {
-					title:{
-				         text:"订单统计",
-				         x:"center"
-				         },
-				    tooltip : {
-				        trigger: 'item',
-				        formatter: "{a} <br/>{b} : {c} ({d}%)"
-				    },
-				    legend: {
-				        orient : 'vertical',
-				        x : 'left',
-				        data:['送达订单','退订订单']
-				    },
-				    calculable : true,
-				    series : [
-				        {
-				            name:'订单占比',
-				            type:'pie',
-				            radius : ['50%', '70%'],
-				            itemStyle : {
-				                normal : {
-				                    label : {
-				                        show : false
-				                    },
-				                    labelLine : {
-				                        show : false
-				                    }
-				                },
-				                emphasis : {
-				                    label : {
-				                        show : true,
-				                        position : 'center',
-				                        textStyle : {
-				                            fontSize : '18',
-				                            fontWeight : 'bold'
-				                        }
-				                    }
-				                }
-				            },
-				            data:[
-				                {value:ctype1, name:'送达订单'},
-				                {value:ctype2, name:'退订订单'}
-				            ]
-				        }
-				    ]
-				};
-			var option2 = {
-					title:{
-				         text:"消费统计",
-				         x:"center"
-				         },
-				    tooltip : {
-				        trigger: 'item',
-				        formatter: "{a} <br/>{b} : {c} ({d}%)"
-				    },
-				    legend: {
-				        orient : 'vertical',
-				        x : 'left',
-				        data:['超过100的订单','小额订单']
-				    },
-				    calculable : true,
-				    series : [
-				        {
-				            name:'占比',
-				            type:'pie',
-				            radius : ['50%', '70%'],
-				            itemStyle : {
-				                normal : {
-				                    label : {
-				                        show : false
-				                    },
-				                    labelLine : {
-				                        show : false
-				                    }
-				                },
-				                emphasis : {
-				                    label : {
-				                        show : true,
-				                        position : 'center',
-				                        textStyle : {
-				                            fontSize : '18',
-				                            fontWeight : 'bold'
-				                        }
-				                    }
-				                }
-				            },
-				            data:[
-				                {value:rtype1, name:'超过100的订单'},
-				                {value:rtype2, name:'小额订单'}
-				            ]
-				        }
-				    ]
-				};
-			orders.setOption(option);
-		 	payInfo.setOption(option2);
-		}
-		});
+
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: true,
+        positionClass: "toast-top-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "2000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+    $('#infoModal').on('shown.bs.modal', function () {
+        var $this = $(this);
+        var dialog = $this.find('.modal-dialog');
+
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        var top = ($(window).height() - dialog.height()) / 2;
+        dialog.css({
+            marginTop:top
+        });
+    });
+    $('#goodsModal').on('shown.bs.modal', function () {
+        var $this = $(this);
+        var dialog = $this.find('.modal-dialog');
+
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        var top = ($(window).height() - dialog.height()) / 2;
+        dialog.css({
+            marginTop:top
+        });
+    });
+    $('#discountModal').on('shown.bs.modal', function () {
+        var $this = $(this);
+        var dialog = $this.find('.modal-dialog');
+
+        //此种方式，在使用动画第一次显示时有问题
+        //解决方案，去掉动画fade样式
+        var top = ($(window).height() - dialog.height()) / 2;
+        dialog.css({
+            marginTop:top
+        });
+    });
+
 }
 </script>
 </head>
@@ -296,6 +231,55 @@ function show(){
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-block">
+
+
+                                <div class="row" style="height: 50px;">
+                                    <img src="images/edit.png" style="top:5%;right:5%;position:absolute;height: 30px;width: 30px; cursor: pointer;float: right;" data-toggle="modal" data-target="#infoModal">
+                                </div>
+
+
+                                <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel">修改会员信息</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="card-block">
+                                                    <form class="form-horizontal form-material">
+                                                        <div class="form-group">
+                                                            <label class="col-md-12">修改餐厅地址</label>
+                                                            <div class="col-md-12">
+                                                                <input type="text" class="form-control form-control-line"  id="raddress" name="raddress">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label class="col-sm-12">修改餐厅类型</label>
+                                                            <div class="col-sm-12">
+                                                                <select class="form-control form-control-line" id="rtype" name="rtype">
+                                                                    <option></option>
+                                                                    <option>餐厅</option>
+                                                                    <option>商店</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary">提交更改</button>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal -->
+                                </div>
+
+
                                 <form class="form-horizontal form-material">
                                 	<div class="form-group">
                                         <label class="col-md-12">餐厅识别码</label>
@@ -329,7 +313,29 @@ function show(){
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
+                                    
+                                    
+                                    
+                                             
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                  
+                    <!-- Column -->
+                        <div class="card">
+                            <div class="card-block bg-info">
+                                <h3 class="text-white card-title">本店商品信息</h3>
+                                
+                            </div>
+                            <div class="card-block">
+                                <div class="message-box contact-box">
+                                    <h2 class="add-ct-btn"><button type="button" data-toggle="modal" data-target="#goodsModal" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
+                                    <div class="message-widget contact-widget">
+                                        <!-- Message -->
+                                        <div class="form-group">
                                         <label class="col-md-12">本店出售</label>
                                         <div class="table-responsive">
                                         <br>
@@ -353,9 +359,10 @@ function show(){
                                     </table>
                                 </div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label class="col-md-12">本店优惠</label>
+                                        
+                                        <div class="form-group">
+                                            <h2 class="add-ct-btn" style="top:auto;"><button type="button" data-toggle="modal" data-target="#discountModal" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
+                                            <label class="col-md-12">本店优惠</label>
                                         <div class="table-responsive">
                                         <br>
                                     <table class="table">
@@ -378,21 +385,95 @@ function show(){
                                     </table>
                                 </div>
                                     </div>
-                                             
-                                </form>
+                                        
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" >发布新商品</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="card-block">
+                                                <form class="form-horizontal form-material">
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">商品名称</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control form-control-line"  id="name" name="name">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">商品单价</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control form-control-line"  id="price" name="price" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">商品库存</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control form-control-line"  id="quantity" name="quantity" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">发布</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
+
+
+                            <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" >发布新优惠</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="card-block">
+                                                <form class="form-horizontal form-material">
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">满足金额数</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control form-control-line"  id="amount" name="amount" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="col-md-12">折扣金额</label>
+                                                        <div class="col-md-12">
+                                                            <input type="text" class="form-control form-control-line"  id="discount" name="discount" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary">发布</button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+                            </div>
+
+
                         </div>
-                    </div>
-                    
-                    <div class="col-lg-8 col-xlg-9 col-md-7">
-                    	<div class="card">
-                            <div class="card-block">
-                            <div id="orders" style="width: 600px;height: 300px;"></div>
-                             <div id="payInfo" style="width: 600px;height: 300px;"></div>
-                          </div>
-                        </div>    
-                   </div>
-                    <!-- Column -->
                 </div>
                 
                 
@@ -436,5 +517,7 @@ function show(){
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
+<script src="css1/toastr.min.js"></script>
+
 </body>
 </html>
