@@ -257,7 +257,7 @@ function show(){
 
                                 <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content" style="background-color: #eaf0f4;">
                                             <div class="modal-header">
                                                 <h4 class="modal-title" id="myModalLabel">修改会员信息</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -279,14 +279,21 @@ function show(){
                                                                 </div>
                                                             </div>
 
+                                                            <div class="form-group">
+                                                                <br>
+                                                                <div class="col-sm-12">
+                                                                    　　　
+                                                                    <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
+                                                                    　　　　　
+                                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
+                                                                </div>
+                                                            </div>
+
                                                         </form>
                                                     </div>
 
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
-                                                <button type="button" class="btn btn-success">提交更改</button>
-                                            </div>
+
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal -->
                                 </div>
@@ -371,7 +378,7 @@ function show(){
 
                             <div class="modal fade" id="addressModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                    <div class="modal-content">
+                                    <div class="modal-content" style="background-color: #eaf0f4;">
                                         <div class="modal-header">
                                             <h4 class="modal-title" >添加新送餐地址</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -387,14 +394,22 @@ function show(){
                                                         </div>
                                                     </div>
 
+
+                                                    <div class="form-group">
+                                                        <br>
+                                                        <div class="col-sm-12">
+                                                            　　　
+                                                            <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
+                                                            　　　　　
+                                                            <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
+                                                        </div>
+                                                    </div>
+
                                                 </form>
                                             </div>
 
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
-                                            <button type="button" class="btn btn-success">提交更改</button>
-                                        </div>
+
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal -->
                             </div>

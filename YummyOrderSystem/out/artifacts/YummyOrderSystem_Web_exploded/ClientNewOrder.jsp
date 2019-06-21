@@ -433,20 +433,24 @@ function show(){
 	var rgoods = restaurant.rgoods;
 	$("#title").text(restaurant.rname);
 	$("#address").text(restaurant.raddress);
+	$("#restaurant-img").attr('src',restaurant.url);
+    var scorePercent1 = restaurant.score*100.0/5.0 + "%";
+    $("#restaurant-score").attr('style',"width:"+scorePercent1+";");
 	for(var i=0;i<rgoods.length;i++){
-	    $("#goodsList").append("<div class=\"restaurant\">\n" +
+        var scorePercent = rgoods[i].score*100.0/5.0 + "%";
+        $("#goodsList").append("<div class=\"restaurant\">\n" +
             "                            <div class=\"restaurant-logo\">\n" +
             "                                <a>\n" +
-            "                                    <img class=\"restaurant-logo-icon\" src=\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560838083846&di=04c5d1b32b25162f7836f6b3db8b2000&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20151127%2F1448617714957094.jpg\">\n" +
+            "                                    <img class=\"restaurant-logo-icon\" src=\""+rgoods[i].url+"\">\n" +
             "                                </a>\n" +
             "                            </div>\n" +
             "                            <div class=\"restaurant-content\">\n" +
             "                                <h3 class=\"restaurant-title\">"+rgoods[i].foodName+"</h3>\n" +
             "                                <div class=\"restaurant-address\">\n" +
-            "                                    介绍111\n" +
+            "                                    "+rgoods[i].introduction+"\n" +
             "                                </div>\n" +
             "                                <div class=\"star-rating\">\n" +
-            "                                    <div class=\"star-rating-top\" style=\"width: 50%\">\n" +
+            "                                    <div class=\"star-rating-top\" style=\"width: "+scorePercent+"\">\n" +
             "                                        <span></span>\n" +
             "                                        <span></span>\n" +
             "                                        <span></span>\n" +
@@ -712,7 +716,7 @@ $(function(){
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="ClientGetRs.jsp">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             
@@ -751,7 +755,7 @@ $(function(){
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="ClientInfo.jsp"  aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
                         </li>
                     </ul>
                 </div>
@@ -816,14 +820,14 @@ $(function(){
                 <div class="shopguide">
                     <div class="container">
                         <div class="shopguide-info">
-                            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560838083846&di=04c5d1b32b25162f7836f6b3db8b2000&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20151127%2F1448617714957094.jpg">
+                            <img id="restaurant-img">
                             <div class="shopguide-info-wrapper">
                                 <div>
                                     <h1 id="title">
                                     </h1>
                                 </div>
                                 <div class="star-rating">
-                                    <div class="star-rating-top" style="width: 50%">
+                                    <div class="star-rating-top" id="restaurant-score">
                                         <span></span>
                                         <span></span>
                                         <span></span>

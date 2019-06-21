@@ -175,14 +175,17 @@ function show(){
 				    for(var i=0;i<list.length;i++) {
                         var dataValue = list[i];
                         sessionStorage.setItem('restaurant_'+dataValue.rid, JSON.stringify(dataValue));
-                        $("#restaurant-list").append("<a class=\"restaurant\" href=\"ClientNewOrder.jsp?rid="+dataValue.rid+"\">\n" +
+                        var scorePercent = dataValue.score*100.0/5.0 + "%";
+                        var rtypeDetail = "rtypeDetail-"+dataValue.rtypedetail;
+
+                        $("#restaurant-list").append("<a class=\"restaurant "+rtypeDetail+"\" href=\"ClientNewOrder.jsp?rid="+dataValue.rid+"\">\n" +
                             "                        <div class=\"restaurant-logo\">\n" +
-                            "                            <img class=\"restaurant-logo-icon\" width=\"80px\" height=\"80px\" src=\"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1560838083846&di=04c5d1b32b25162f7836f6b3db8b2000&imgtype=0&src=http%3A%2F%2Fimg.25pp.com%2Fuploadfile%2Fapp%2Ficon%2F20151127%2F1448617714957094.jpg\">\n" +
+                            "                            <img class=\"restaurant-logo-icon\" width=\"80px\" height=\"80px\" src=\""+dataValue.url+"\">\n" +
                             "                        </div>\n" +
                             "                        <div class=\"restaurant-content\">\n" +
                             "                            <div class=\"restaurant-title\">" + dataValue.rname + "</div>\n" +
                             "                            <div class=\"star-rating\">\n" +
-                            "                                <div class=\"star-rating-top\" style=\"width:50%\">\n" +
+                            "                                <div class=\"star-rating-top\" style=\"width:"+scorePercent+"\">\n" +
                             "                                    <span></span>\n" +
                             "                                    <span></span>\n" +
                             "                                    <span></span>\n" +
@@ -207,7 +210,60 @@ function show(){
 			});
 }
 
+function showAll(){
 
+    $(".rtypeDetail-0").show();
+    $(".rtypeDetail-1").show();
+    $(".rtypeDetail-2").show();
+    $(".rtypeDetail-3").show();
+    $(".rtypeDetail-4").show();
+
+}
+
+function showDessert(){
+
+    $(".rtypeDetail-0").show();
+    $(".rtypeDetail-1").hide();
+    $(".rtypeDetail-2").hide();
+    $(".rtypeDetail-3").hide();
+    $(".rtypeDetail-4").hide();
+}
+
+function showFastFood() {
+
+    $(".rtypeDetail-0").hide();
+    $(".rtypeDetail-1").show();
+    $(".rtypeDetail-2").hide();
+    $(".rtypeDetail-3").hide();
+    $(".rtypeDetail-4").hide();
+}
+
+function showBBQ() {
+
+    $(".rtypeDetail-0").hide();
+    $(".rtypeDetail-1").hide();
+    $(".rtypeDetail-2").show();
+    $(".rtypeDetail-3").hide();
+    $(".rtypeDetail-4").hide();
+}
+
+function showFruit() {
+
+    $(".rtypeDetail-0").hide();
+    $(".rtypeDetail-1").hide();
+    $(".rtypeDetail-2").hide();
+    $(".rtypeDetail-3").show();
+    $(".rtypeDetail-4").hide();
+}
+
+function showNecessities() {
+
+    $(".rtypeDetail-0").hide();
+    $(".rtypeDetail-1").hide();
+    $(".rtypeDetail-2").hide();
+    $(".rtypeDetail-3").hide();
+    $(".rtypeDetail-4").show();
+}
  </script>
 </head>
 <body class="fix-header fix-sidebar card-no-border" onload="show()">
@@ -231,7 +287,7 @@ function show(){
                 <!-- Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="ClientGetRs.jsp">
                         <!-- Logo icon --><b>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             
@@ -270,7 +326,7 @@ function show(){
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="ClientInfo.jsp"  aria-haspopup="true" aria-expanded="false"><img src="./assets/images/users/1.jpg" alt="user" class="profile-pic m-r-10" />Markarn Doe</a>
                         </li>
                     </ul>
                 </div>
@@ -335,7 +391,7 @@ function show(){
 
                 <div class="row" style="background-color: #fff">
 
-                    <a class="aui-palace-grid">
+                    <a class="aui-palace-grid" onclick="showAll()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/all.png" alt="">
                         </div>
@@ -344,7 +400,7 @@ function show(){
                         </div>
                     </a>
 
-                    <a class="aui-palace-grid">
+                    <a class="aui-palace-grid" onclick="showDessert()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/dessert.png" alt="">
                         </div>
@@ -353,7 +409,7 @@ function show(){
                         </div>
                     </a>
 
-                    <a class="aui-palace-grid">
+                    <a class="aui-palace-grid" onclick="showFastFood()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/fastFood.png" alt="">
                         </div>
@@ -362,7 +418,7 @@ function show(){
                         </div>
                     </a>
 
-                    <a class="aui-palace-grid">
+                    <a class="aui-palace-grid" onclick="showBBQ()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/bbq.png" alt="">
                         </div>
@@ -371,7 +427,7 @@ function show(){
                         </div>
                     </a>
 
-                    <a class="aui-palace-grid">
+                    <a class="aui-palace-grid" onclick="showFruit()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/fruit.png" alt="">
                         </div>
@@ -380,7 +436,7 @@ function show(){
                         </div>
                     </a>
 
-                    <a class="aui-palace-grid">
+                    <a class="aui-palace-grid" onclick="showNecessities()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/necessities.png" alt="">
                         </div>
