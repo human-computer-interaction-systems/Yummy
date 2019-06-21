@@ -15,7 +15,12 @@ public class Goods implements Serializable{
 	private int quantity;
 	private int number;//一张订单订购该物品数量
 	private double amount;//一张订单订购该物品金额
-	
+	private String url;//该商品的URL
+	private double score;//该商品的评分
+
+	public Goods() {
+	}
+
 	public int getRid() {
 		return rid;
 	}
@@ -52,5 +57,20 @@ public class Goods implements Serializable{
 	public void setAmount(double amount) {
 		this.amount = amount;
 	}
-	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
 }

@@ -143,6 +143,9 @@ public class RestaurantDaoImpl implements RestaurantDao{
 				restaurant.setPassword(result.getString("password"));
 				restaurant.setRtype(result.getInt("rtype"));
 				restaurant.setBalance(result.getDouble("balance"));
+				restaurant.setRtypedetail(result.getInt("rtypedetail"));
+				restaurant.setUrl(result.getString("img"));
+				restaurant.setScore(result.getDouble("score"));
 			}
 			
 			//该餐厅货物查询
@@ -156,6 +159,8 @@ public class RestaurantDaoImpl implements RestaurantDao{
 				goods.setFoodName(result.getString("foodName"));
 				goods.setPrice(result.getDouble("price"));
 				goods.setQuantity(result.getInt("quantity"));
+				goods.setUrl(result.getString("img"));
+				goods.setScore(result.getDouble("score"));
 				goods.setAmount(0);
 				goods.setNumber(0);
 				ArrayList<Goods> tempGoods = restaurant.getRgoods();

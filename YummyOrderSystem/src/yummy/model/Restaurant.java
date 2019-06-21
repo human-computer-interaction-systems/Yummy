@@ -17,6 +17,9 @@ public class Restaurant implements Serializable{
 	private int rtype;
 	private double balance;
 	private ArrayList<Goods> rgoods;
+	private int rtypedetail;//商家的二级分类
+	private String url;//商家头像URL
+	private double score;//商家评分
 	
 	public int getRid() {
 		return rid;
@@ -61,7 +64,29 @@ public class Restaurant implements Serializable{
 	public void setRgoods(ArrayList<Goods> rgoods) {
 		this.rgoods = rgoods;
 	}
-	
-	
 
+
+	public int getRtypedetail() {
+		return rtypedetail;
+	}
+
+	public void setRtypedetail(int rtypedetail) {
+		this.rtypedetail = rtypedetail;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
 }

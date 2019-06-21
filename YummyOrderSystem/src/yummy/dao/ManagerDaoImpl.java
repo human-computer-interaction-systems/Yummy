@@ -219,13 +219,16 @@ public class ManagerDaoImpl implements ManagerDao{
 				int rid = result.getInt("rid");
 				Restaurant restaurant = new Restaurant();
 				restaurant.setRgoods(new ArrayList<Goods>());
-				
+
 				restaurant.setRid(result.getInt("rid"));
 				restaurant.setRname(result.getString("rname"));
 				restaurant.setRaddress(result.getString("raddress"));
 				restaurant.setPassword(result.getString("password"));
 				restaurant.setRtype(result.getInt("rtype"));
 				restaurant.setBalance(result.getDouble("balance"));
+				restaurant.setRtypedetail(result.getInt("rtypedetail"));
+				restaurant.setUrl(result.getString("img"));
+				restaurant.setScore(result.getDouble("score"));
 				
 				stmt = con.prepareStatement("select * from rfood where rid = ?");
 				stmt.setInt(1, rid);
@@ -237,6 +240,8 @@ public class ManagerDaoImpl implements ManagerDao{
 					goods.setFoodName(result2.getString("foodName"));
 					goods.setPrice(result2.getDouble("price"));
 					goods.setQuantity(result2.getInt("quantity"));
+					goods.setUrl(result2.getString("img"));
+					goods.setScore(result2.getDouble("score"));
 					goods.setAmount(0);
 					goods.setNumber(0);
 					ArrayList<Goods> tempGoods = restaurant.getRgoods();
