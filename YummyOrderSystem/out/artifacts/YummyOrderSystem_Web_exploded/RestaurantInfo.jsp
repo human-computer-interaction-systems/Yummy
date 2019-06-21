@@ -36,9 +36,11 @@ function show(){
 	var identity = ${sessionScope.res.rtype};
 	if(identity == '1'){
 		$("#type").val("餐厅");
-		
-	}else if(identity == '2'){
+        $("#rtype").val("餐厅");
+
+    }else if(identity == '2'){
 		$("#type").val("超市");
+        $("#rtype").val("超市");
 		
 	}
 
@@ -252,7 +254,7 @@ function show(){
                                                         <div class="form-group">
                                                             <label class="col-md-12">修改餐厅地址</label>
                                                             <div class="col-md-12">
-                                                                <input type="text" class="form-control form-control-line"  id="raddress" name="raddress">
+                                                                <input type="text" class="form-control form-control-line" value="${sessionScope.res.raddress}" id="raddress" name="raddress">
                                                             </div>
                                                         </div>
 
@@ -273,7 +275,8 @@ function show(){
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">提交更改</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
+                                                <button type="button" class="btn btn-success">提交更改</button>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal -->
@@ -428,7 +431,8 @@ function show(){
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">发布</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
+                                            <button type="button" class="btn btn-success">发布</button>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal -->
@@ -466,7 +470,8 @@ function show(){
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">发布</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
+                                            <button type="button" class="btn btn-success">发布</button>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal -->

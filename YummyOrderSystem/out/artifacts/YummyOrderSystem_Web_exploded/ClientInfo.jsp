@@ -269,13 +269,13 @@ function show(){
                                                             <div class="form-group">
                                                                 <label class="col-md-12">会员名称</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" class="form-control form-control-line"  id="name" name="name">
+                                                                    <input type="text" class="form-control form-control-line" value="${sessionScope.client.cname}"  id="name" name="name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-md-12">电话号码</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" class="form-control form-control-line" id="phone" name="phone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                                    <input type="text" class="form-control form-control-line" value="${sessionScope.client.phone}" id="phone" name="phone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')">
                                                                 </div>
                                                             </div>
 
@@ -284,7 +284,8 @@ function show(){
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary">提交更改</button>
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
+                                                <button type="button" class="btn btn-success">提交更改</button>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal -->
@@ -391,7 +392,8 @@ function show(){
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary">提交更改</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">　取消　</button>
+                                            <button type="button" class="btn btn-success">提交更改</button>
                                         </div>
                                     </div><!-- /.modal-content -->
                                 </div><!-- /.modal -->
