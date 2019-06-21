@@ -70,6 +70,7 @@ public class RestaurantLoginServlet extends HttpServlet {
 		if(res.getRname()!=null) {
 			HttpSession session = request.getSession(true);
 	        session.setAttribute("res", res);
+	        System.out.println(res.getUrl());
 	        ArrayList<Discount> dis = restaurantService.getRestaurantDis(Integer.parseInt(rid));
 	        session.setAttribute("resDiscount", dis);
 	        response.sendRedirect("RestaurantInfo.jsp");
