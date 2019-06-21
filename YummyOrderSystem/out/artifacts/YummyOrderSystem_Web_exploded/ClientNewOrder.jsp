@@ -20,8 +20,187 @@
      <link rel="stylesheet" type="text/css" href="./css1/password.css">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css1/cart.css" rel="stylesheet">
+    <link href="css1/toastr.min.css" rel="stylesheet">
 
     <style type="text/css">
+
+
+        .css_column h4 a {
+            font-size: 20px;
+            position: absolute;
+            top: 19px;
+            right: 10px;
+            display: block;
+            width: 20px;
+            height: 20px;
+            color: #bfbfbf;
+        }
+
+        .global_toolbar.open {
+            width: 320px;
+        }
+        .global_toolbar {
+            position: fixed;
+            z-index: 1001;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            -webkit-transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            border-left: 1px solid #d0d0d0;
+            background: #fff;
+        }
+        .toolbar_btn {
+            position: absolute;
+            top: 100%;
+            left: -60px;
+            width: 60px;
+        }
+        .toolbar_btn a, .toolbar_btn a samp {
+            position: relative;
+            display: block;
+            height: 60px;
+            color:#666;
+            text-decoration: none;
+            -webkit-transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            border-bottom: 1px solid #37393d;
+        }
+
+        .toolbar_btn a.current samp, .toolbar_btn a:hover samp {
+            border-bottom: 1px solid #e50000;
+            background-color: #e50000;
+        }
+        .toolbar_btn a samp {
+            z-index: 2;
+            width: 60px;
+            color: #fff;
+            background-color: #000;
+        }
+
+        .toolbar_btn a, .toolbar_btn a samp {
+            position: relative;
+            display: block;
+            height: 60px;
+            -webkit-transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            border-bottom: 1px solid #37393d;
+        }
+        .iconi {
+            width: 30px;
+            height: 30px;
+            display: block;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+
+        i {
+            font-style: normal;
+        }
+        .icon-LiveChat1 img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: none;
+        }
+        .toolbar_btn a em {
+            font-size: 16px;
+            font-style: normal;
+            line-height: 60px;
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 60px;
+            display: block;
+            overflow: hidden;
+            width: 0;
+            height: 60px;
+            -webkit-transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            transition: all .4s cubic-bezier(.2,.83,.42,.91);
+            text-align: center;
+            color: #fff;
+            background-color: #000;
+        }
+        .css_column, .toolbar_content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+        .toolbar_content {
+            z-index: 3;
+            width: 100%;
+            background:#ecf2f6;
+        }
+
+        .css_column {
+            z-index: 1000;
+            overflow: hidden;
+            width: 320px;
+            min-width: 280px;
+            background: #fafafa;
+        }
+        .css_column h4 {
+            font-size: 24px;
+            position: relative;
+            margin: 0;
+            padding: 15px 20px;
+            color: #666;
+            border-bottom: 1px solid #e6e6e6;
+            background: #fff;
+            font-weight: normal;
+        }
+        .resultData {
+            overflow: auto;
+            background:#ecf2f6;
+        }
+        .cart_column ul {
+            overflow: auto;
+            padding: 0 20px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+
+        .shop-cartfooter {
+            bottom:0;
+            right:0;
+            width: 320px;
+            position: absolute;
+            height: 46px;
+            line-height: 46px;
+            background-color: #2c2c2c;
+            box-shadow: 0 1px 3px #2c2c2c;
+        }
+
+        .shop-cartfooter-text.price {
+            font-size: 24px;
+            padding-left:10%;
+        }
+
+        .shop-cartfooter-text {
+            color: #fff;
+        }
+        .shop-cartfooter-text, .shop-carticon {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .shop-cartfooter-checkout {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            border: 0;
+            outline: 0;
+            width: 120px;
+            text-align: center;
+            background-color: #51d862;
+            font-weight: 700;
+            color: #fff;
+            cursor: pointer;
+        }
+
         .restaurant{
             background-color: #fff;
             border-bottom: 1px #f5f5f5 solid;
@@ -212,6 +391,25 @@
         }
 
 
+        .u-flyer {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            position: fixed;
+            z-index: 9999;
+        }
+
+        .deleteGoods{
+            font-size: 20px;
+            left: 5px;
+            top:40px;
+            display: block;
+            width: 20px;
+            height: 20px;
+            color: #bfbfbf;
+            cursor:pointer;
+        }
     </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -364,7 +562,8 @@ function show(){
 		dataType:"json",
 		data:{"rid":rid},
 		success:function(data){
-		    var discount = "";
+            sessionStorage.setItem('discount', JSON.stringify(data));
+            var discount = "";
 			var i = 0;
             for (; i < data.length-1; i++) {
                 discount += "满"+data[i].amount+"减"+data[i].discount+" ";
@@ -464,11 +663,110 @@ function getDataRow(h){
 	 return row; //返回tr数据	 
 }
 
-function addToCart(i){
+function addToCart(i) {
+    var event = window.event;
+    var x = event.clientX;
+    var y = event.clientY;
     var rid = (GetQueryString("rid"));
-    var restaurant = JSON.parse(sessionStorage.getItem('restaurant_'+rid));
-    var rgoods = restaurant.rgoods;
+    var restaurant = JSON.parse(sessionStorage.getItem('restaurant_' + rid));
+    var goods = restaurant.rgoods[i];
+    var isNew = true;
+
+    $("#cartList").find("li").each(function () {
+        if (this.getAttribute('foodName') == goods.foodName) {
+            if(parseInt(this.children[2].children[1].children[2].innerHTML) + 1<=goods.quantity){
+                this.children[2].children[1].children[2].innerHTML = parseInt(this.children[2].children[1].children[2].innerHTML) + 1;
+                addProductAnimation(x, y);
+            }
+            else{
+                toastr.error("你选择的商品库存不足！");
+            }
+            isNew = false;
+        }
+    });
+
+    if (isNew) {
+
+        $('#cartList').append("<li class=\"clearfix\" foodName=\"" + goods.foodName + "\">\n" +
+            "                                <a onclick=\"removeGoods(this)\" class=\"icon-close deleteGoods\"></a>\n" +
+            "                                <div class=\"img_con\">\n" +
+            "                                    <img src=\"images/food.png\" alt=\"\">\n" +
+            "                                </div>\n" +
+            "                                <div class=\"product_name\">\n" +
+            "                                    <span>" + goods.foodName + "</span>\n" +
+            "                                    <div class=\"row\" style=\"padding-left: 20px\">\n" +
+            "                                        <div class=\"text1\" style=\"color:red;\">¥" + goods.price + "</div><div class=\"text1\">　×　</div><div class=\"text1\" style=\"color:#3f88de;\">1</div>\n" +
+            "                                    </div>\n" +
+            "                                </div>\n" +
+            "                            </li>");
+        addProductAnimation(x, y);
+    }
+
+
+    countAll();
 }
+
+
+function addProductAnimation(x,y) {
+    var offset = $('#cart-icon-end').offset(), flyer = $('<img class="u-flyer" src="images/food.png"/>');
+    flyer.fly({
+        start: {
+            left: x,
+            top: y
+        },
+        end: {
+            left: offset.left,
+            top: 293.390625,
+            width: 0,
+            height: 0
+        }
+    });
+}
+
+function removeGoods(btn){
+
+    var p = btn.parentElement;
+    p.remove();
+    countAll();
+}
+
+function countAll(){
+    var all = 0;
+    $("#cartList").find("li").each(function () {
+        all += parseInt(this.children[2].children[1].children[2].innerHTML) * parseInt(this.children[2].children[1].children[0].innerHTML.substr(1));
+    });
+    $("#sum").text("");
+    $("#sum").innerHTML="";
+    var discount = JSON.parse(sessionStorage.getItem('discount'));
+
+    var discount_index = -1;
+
+    for (var i = 0; i < discount.length; i++) {  //遍历Table的所有Row
+        //增加数量和总价
+        if(all >= discount[i].amount){
+            discount_index = i;
+        }
+    }
+
+    if(discount_index >= 0){
+        var result = all-discount[discount_index].discount;
+        $("#sum").append("<s>¥"+all+"</s>　¥"+result);
+    }
+    else{
+        $("#sum").text("¥ "+all);
+    }
+}
+
+function goPay(){
+    var liList = $("#cartList").find("li");
+    if(liList.length==0){
+        toastr.error("您还没有选择商品！");
+    }
+    else{
+
+    }
+}
+
 
 function addNewGoods(h){
 	//新添加情况
@@ -492,6 +790,21 @@ function addNewGoods(h){
 
 $(function(){
     show();
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: true,
+        positionClass: "toast-top-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "2000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
 });
 </script>
 </head>
@@ -778,6 +1091,38 @@ $(function(){
             <!-- End footer -->
             <!-- ============================================================== -->
         </div>
+
+
+        <div class="global_toolbar">
+            <div class="toolbar_btn center" style="top:60%;margin-top:-150px;">
+                <a class="bar_cart" data-id="global_toolbar" id="cart-icon-end">
+                    <samp>
+                        <i class="iconi icon-LiveChat1">
+                            <img src="images/car-1.png">
+                        </i>
+                    </samp>
+                </a>
+            </div>
+            <div class="toolbar_content">
+                <div class="css_column cart_column js_column">
+                    <h4>
+                        购物车<a href="javascript:void(0)" class="icon-close "></a>
+                    </h4>
+                    <div class="resultData">
+                        <ul style="height: auto;" id="cartList">
+
+                        </ul>
+                    </div>
+                    <div class="shop-cartfooter">
+
+                        <p class="shop-cartfooter-text price" id="sum">
+
+                        </p>
+                        <button class="shop-cartfooter-checkout" onclick="goPay()">去结算></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
@@ -789,7 +1134,7 @@ $(function(){
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script type="text/javascript" src="./assets/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
+<!-- Bootstrap tether Core JavaScript -->
     <script type="text/javascript" src="./assets/plugins/bootstrap/js/tether.min.js"></script>
     <script type="text/javascript" src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <!-- slimscrollbar scrollbar JavaScript -->
@@ -802,5 +1147,9 @@ $(function(){
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
+    <script type="text/javascript" src="statistics/js/requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="statistics/js/fly.js"></script>
+    <script type="text/javascript" src="statistics/js/common.js"></script>
+    <script type="text/javascript" src="css1/toastr.min.js"></script>
 </body>
 </html>
