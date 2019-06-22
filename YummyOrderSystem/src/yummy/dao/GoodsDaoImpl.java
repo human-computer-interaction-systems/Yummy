@@ -25,8 +25,8 @@ public class GoodsDaoImpl implements GoodsDao{
 	@Override
 	public boolean addGoods(ArrayList<Goods> goods) {
 		// TODO Auto-generated method stub
-		//INSERT INTO `order` (`cid`, `rid`, `totalAmount`, `caddress`, `orderTime`, `isDelivery`, `isDisorder`) VALUES ('1', '1903001', '12', 'ÐÂ½Ö¿Ú', '20190301190000', '0', '0')
-		//INSERT INTO `ordergoods` (`oid`, `rid`, `foodName`, `number`, `amount`) VALUES ('1', '1903001', '¿óÈªË®', '6', '12')
+		//INSERT INTO `order` (`cid`, `rid`, `totalAmount`, `caddress`, `orderTime`, `isDelivery`, `isDisorder`) VALUES ('1', '1903001', '12', 'ï¿½Â½Ö¿ï¿½', '20190301190000', '0', '0')
+		//INSERT INTO `ordergoods` (`oid`, `rid`, `foodName`, `number`, `amount`) VALUES ('1', '1903001', 'ï¿½ï¿½ÈªË®', '6', '12')
 		Connection con = daoHelper.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet result = null;				
@@ -34,18 +34,22 @@ public class GoodsDaoImpl implements GoodsDao{
 				
 		try 
 		{
-			//caddress±í²åÈë
-			int numOfGoods = goods.size();//ÐÂÔöÉÌÆ·ÊýÁ¿
+			//caddressï¿½ï¿½ï¿½ï¿½ï¿½
+			int numOfGoods = goods.size();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
 			
-			//sqlÓï¾ä·ÅÔÚÍâÃæ
-			stmt = con.prepareStatement("INSERT INTO `rfood` (`rid`, `foodName`, `price` ,`quantity`) VALUES (? ,? ,? ,?)");
-				
+			//sqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+			stmt = con.prepareStatement("INSERT INTO `rfood` (`rid`, `foodName`, `price`, `quantity`, `img`, `score`, `introduction`) VALUES (? ,? ,? ,? ,? ,? ,?)");
+
+
 			for(int i = 0; i < numOfGoods; i++) {
 				Goods aGoods = goods.get(i);
 				stmt.setInt(1, aGoods.getRid());
 				stmt.setString(2, aGoods.getFoodName());
 				stmt.setDouble(3, aGoods.getPrice());
 				stmt.setInt(4, aGoods.getQuantity());
+				stmt.setString(5, aGoods.getUrl());
+				stmt.setDouble(6, aGoods.getPrice());
+				stmt.setString(7, aGoods.getIntroduction());
 				stmt.addBatch();
 			}
 			

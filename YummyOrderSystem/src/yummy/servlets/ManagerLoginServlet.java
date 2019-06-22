@@ -68,7 +68,7 @@ public class ManagerLoginServlet extends HttpServlet {
 			HttpSession session = request.getSession(true);
 	        session.setAttribute("manager", manager);
 	        
-	        request.getRequestDispatcher("ManagerInfo.jsp").forward(request, response);
+	        request.getRequestDispatcher("ManagerStatistics.jsp").forward(request, response);
 		}else {
 			showErrorMessage(response, "�û����������������������");
 		}

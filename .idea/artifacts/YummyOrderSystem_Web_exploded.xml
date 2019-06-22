@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="YummyOrderSystem:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/YummyOrderSystem_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="YummyOrderSystem/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="YummyOrderSystem" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="activation.jar" module-name="YummyOrderSystem" />
+          <element id="library" level="module" name="gson-2.0.jar" module-name="YummyOrderSystem" />
+          <element id="library" level="module" name="log4j-1.2.17.jar" module-name="YummyOrderSystem" />
+          <element id="library" level="module" name="mail.jar" module-name="YummyOrderSystem" />
+          <element id="library" level="module" name="slf4j-api-1.7.10.jar" module-name="YummyOrderSystem" />
+          <element id="library" level="module" name="slf4j-log4j12-1.7.10.jar" module-name="YummyOrderSystem" />
+          <element id="library" level="project" name="spring-aop-5.0.2.RELEASE" />
+          <element id="library" level="project" name="slf4j-log4j12-1.7.10" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.16" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

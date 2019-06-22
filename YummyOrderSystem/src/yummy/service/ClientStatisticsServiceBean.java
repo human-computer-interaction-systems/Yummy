@@ -67,10 +67,10 @@ public class ClientStatisticsServiceBean implements ClientStatisticsService{
 	public List<ClientFavor> getMyFavorRes(int cid) {
 		// TODO Auto-generated method stub
 		return Arrays.asList(
-				new ClientFavor("韩式炸鸡", 21, 0.20), 
-				new ClientFavor("湘圆小炒", 18, 0.172), 
-				new ClientFavor("鸡鸣汤包", 15, 0.143), 
-				new ClientFavor("CoCo都可", 12, 0.114), 
+				new ClientFavor("悠悠舒芙蕾", 21, 0.20),
+				new ClientFavor("贡茶", 18, 0.172),
+				new ClientFavor("成都冒菜", 15, 0.143),
+				new ClientFavor("兰州拉面", 12, 0.114),
 				new ClientFavor("平价水果店", 10, 0.095));
 	}
 	

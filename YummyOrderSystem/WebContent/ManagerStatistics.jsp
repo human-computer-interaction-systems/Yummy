@@ -872,13 +872,11 @@ function show(){
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav">                       
-                         <li> <a class="waves-effect waves-dark" href="ManagerInfo.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">个人中心</span></a>
+                    <ul id="sidebarnav">
+						<li> <a class="waves-effect waves-dark" href="ManagerStatistics.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">平台信息统计</span></a>
+						</li>
+						<li> <a class="waves-effect waves-dark" href="ManagerApproval.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">审核信息</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="ManagerApproval.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">审核信息</span></a>
-                        </li>
-                        <li> <a class="waves-effect waves-dark" href="ManagerStatistics.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">平台信息统计</span></a>
-                        </li>      
                     </ul>              
                 </nav>
                 <!-- End Sidebar navigation -->

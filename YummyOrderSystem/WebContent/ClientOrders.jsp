@@ -19,6 +19,7 @@
     <link href="./lite/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css1/toastr.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -28,6 +29,21 @@
 <script src="./css1/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
   function show(){
+      toastr.options = {
+          closeButton: false,
+          debug: false,
+          progressBar: false,
+          positionClass: "toast-top-center",
+          onclick: null,
+          showDuration: "300",
+          hideDuration: "1000",
+          timeOut: "2000",
+          extendedTimeOut: "1000",
+          showEasing: "swing",
+          hideEasing: "linear",
+          showMethod: "fadeIn",
+          hideMethod: "fadeOut"
+      };
 	 var cid = ${sessionScope.client.cid};
 	 $.ajaxSetup({cache:false});
 		$.ajax({
@@ -148,6 +164,7 @@
 		 var cancelCell = document.createElement('td');//创建第四列，操作列
 		 row.appendChild(cancelCell);
 		 var btnDel = document.createElement('input'); //创建一个input控件
+         btnDel.className = "btn btn-success";
 		 btnDel.setAttribute('type','button'); //type="button"
 		 btnDel.setAttribute('value','取消订单'); 
 		 
@@ -166,7 +183,7 @@
 				 //alert(parseInt(nowTime - oldTime) / 1000 / 60);
 				 var diffTime = parseInt(nowTime - oldTime) / 1000 / 60;//获取时间差分钟数
 				 if(diffTime>30){
-					 alert("已经超过最大允许时间，不可退订");
+					 toastr.info("已经超过最大允许时间，不可退订!");
 				 }
 				 else{
 					 //根据oid退订，更新数据库
@@ -182,7 +199,7 @@
 									
 							});
 						location.reload();
-						alert("取消订单成功！");
+						toastr.success("取消订单成功！");
 				 }
 				 
 				 //btnDel - td - tr - tbody - 删除(tr)
@@ -335,8 +352,6 @@
                         </li>
                         <li> <a class="waves-effect waves-dark" href="ClientGetRs.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">点餐</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="ClientInfoChange.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">个人信息修改</span></a>
-                        </li>    
                         <li> <a class="waves-effect waves-dark" href="ClientStatistics.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">个人信息统计</span></a>
                         </li>   
                     </ul>              
@@ -495,5 +510,6 @@
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
+    <script src="css1/toastr.min.js"></script>
 </body>
 </html>

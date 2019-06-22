@@ -772,10 +772,6 @@ function show(){
                         </li>
                         <li> <a class="waves-effect waves-dark" href="RestaurantAddGoods.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">新品发布</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="RestaurantAddDiscount.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">优惠信息发布</span></a>
-                        </li>   
-                         <li> <a class="waves-effect waves-dark" href="RestaurantInfoChange.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">餐厅信息修改</span></a>
-                        </li>
                         <li> <a class="waves-effect waves-dark" href="RestaurantStatistics.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">餐厅信息统计</span></a>
                         </li>      
                     </ul>               
@@ -974,7 +970,7 @@ function show(){
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
-        </div>
+
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->

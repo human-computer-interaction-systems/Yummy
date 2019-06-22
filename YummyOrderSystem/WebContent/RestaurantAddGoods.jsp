@@ -18,6 +18,7 @@
     <link href="./lite/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css1/toastr.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -27,14 +28,30 @@
 <script src="./css1/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function check(){
+
     var name = document.getElementById("name").value;
     var price = document.getElementById("price").value;
     var quantity = document.getElementById("quantity").value;
     if(name == "" || price == "" || quantity == ""){
-          alert("商品信息未填写完整");
+        toastr.options = {
+            closeButton: false,
+            debug: false,
+            progressBar: false,
+            positionClass: "toast-top-center",
+            onclick: null,
+            showDuration: "300",
+            hideDuration: "1000",
+            timeOut: "2000",
+            extendedTimeOut: "1000",
+            showEasing: "swing",
+            hideEasing: "linear",
+            showMethod: "fadeIn",
+            hideMethod: "fadeOut"
+        };
+          toastr.info("商品信息未填写完整！");
           return false;
     }else{
-     	alert("发布新品成功！");
+        toastr.info("发布新品成功！正在更新数据...");
     	return true;
     }
 }
@@ -124,10 +141,6 @@ function check(){
                         </li>
                         <li> <a class="waves-effect waves-dark" href="RestaurantAddGoods.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">新品发布</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="RestaurantAddDiscount.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">优惠信息发布</span></a>
-                        </li>   
-                         <li> <a class="waves-effect waves-dark" href="RestaurantInfoChange.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">餐厅信息修改</span></a>
-                        </li>     
                         <li> <a class="waves-effect waves-dark" href="RestaurantStatistics.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">餐厅信息统计</span></a>
                         </li> 
                     </ul>              
@@ -171,7 +184,7 @@ function check(){
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-block">
-                                <form class="form-horizontal form-material" action="RestaurantAddGoodsServlet" id="curst" method="post" onsubmit="return check()">                                    
+                                <form class="form-horizontal form-material" action="RestaurantAddGoodsServlet" enctype="multipart/form-data" id="curst" method="post" onsubmit="return check()">
                                     <div class="form-group">
                                         <label class="col-md-12">商品名称</label>
                                         <div class="col-md-12">
@@ -192,7 +205,20 @@ function check(){
                                             <input type="text" class="form-control form-control-line"  id="quantity" name="quantity" onkeyup="value=value.replace(/[^\d]/g,'')">
                                         </div>
                                     </div>
-                                    
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">商品介绍</label>
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control form-control-line"  id="introduction" name="introduction" >
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-12">商品图片</label>
+                                        <div class="col-md-12">
+                                            <input type="file" class="form-control form-control-line"  id="img" name="img" >
+                                        </div>
+                                    </div>
                                     
                                     <div class="form-group">
                                         <div class="col-sm-12">
@@ -246,5 +272,6 @@ function check(){
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
+    <script src="css1/toastr.min.js"></script>
 </body>
 </html>

@@ -19,7 +19,117 @@
     <link href="./lite/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
-    <link href="css1/toastr.min.css">
+    <link href="css1/toastr.min.css" rel="stylesheet">
+    <style type="text/css">
+        .restaurant{
+            background-color: #fff;
+            border-bottom: 1px #f5f5f5 solid;
+            width: 48%;
+            height: 150px;
+            float: left;
+            font-size: 12px;
+            position: relative;
+            margin: 6px;
+        }
+
+        .restaurant-logo{
+            padding: 20px;
+            color: #999;
+            text-align: center;
+            float: left;
+            font-size: 12px;
+            position: relative;
+        }
+
+        .restaurant-logo-icon{
+            display: block;
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .restaurant-content{
+            padding: 20px;
+        }
+        .restaurant-title{
+            font-size: 16px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #333;
+        }
+        .restaurant-address{
+            color: #999;
+            margin-top: 3px;
+        }
+
+        .shopmenu-food-price {
+            bottom: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #f74342;
+        }
+
+        .shopmenu-food-button{
+            float: right;
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            border: 0;
+            cursor: pointer;
+            width: 90px;
+            height: 26px;
+            line-height: 26px;
+            border-radius: 20px;
+            text-align: center;
+            outline: 0;
+            display: inline-block;
+            background-color: #0089dc;
+            color: #fff;
+        }
+
+        .star-rating {
+            unicode-bidi: bidi-override;
+            color: #ddd;
+            font-size: 0;
+            height: 20px;
+            margin: 0;
+            position: relative;
+            display: table;
+            padding: 0;
+            text-shadow: 0px 1px 0 #a2a2a2;
+        }
+
+        .star-rating span {
+            padding: 5px;
+            font-size: 15px;
+        }
+
+        .star-rating span:after {
+            content: "★";
+        }
+
+        .star-rating-top {
+            color: #FFD700;
+            padding: 0;
+            position: absolute;
+            z-index: 1;
+            display: block;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .star-rating-bottom {
+            padding: 0;
+            display: block;
+            z-index: 0;
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -28,6 +138,32 @@
 <![endif]-->
 <script src="./css1/jquery-3.3.1.min.js"></script>
 <script src="./css1/echarts.common.min.js"></script>
+    <script language="javascript" type="text/javascript">
+        function checkDiscount(){
+            var amount = document.getElementById("amount").value;
+            var discount = document.getElementById("discount").value;
+            if(amount == "" || discount == ""){
+                toastr.info("优惠信息未填写完整");
+                return false;
+            }else{
+                toastr.success("发布优惠信息成功！");
+                return true;
+            }
+        }
+        function checkInfo(){
+            var raddress = document.getElementById("raddress").value;
+
+            if(raddress == ""){
+                toastr.info("请输入新的餐厅地址！");
+                return false;
+            }else{
+                toastr.success("提交修改信息成功！等待管理员审核。");
+                return true;
+            }
+
+
+        }
+    </script>
 <script language="javascript" type="text/javascript">
 function show(){
 	var balance = ${sessionScope.res.balance};
@@ -44,6 +180,47 @@ function show(){
         $("#rtype").val("超市");
 		
 	}
+
+    var rid = ${sessionScope.res.rid};
+    var pwd = "${sessionScope.res.password}";
+
+    $.ajaxSetup({cache:false});
+    $.ajax({
+        type:"get",
+        url:"RestaurantLoginServlet",
+        dataType:"json",
+        data:{"rid":rid,"pwd":pwd},
+        success:function(data){
+            var rgoods = data.Res.rgoods;
+
+
+            for(var i=0;i<rgoods.length;i++){
+                var scorePercent = rgoods[i].score*100.0/5.0 + "%";
+                $("#goodsList").append("<div class=\"restaurant\">\n" +
+                    "                            <div class=\"restaurant-logo\">\n" +
+                    "                                <a>\n" +
+                    "                                    <img class=\"restaurant-logo-icon\" src=\""+rgoods[i].url+"\">\n" +
+                    "                                </a>\n" +
+                    "                            </div>\n" +
+                    "                            <div class=\"restaurant-content\">\n" +
+                    "                                <h3 class=\"restaurant-title\">"+rgoods[i].foodName+"</h3>\n" +
+                    "                                <div class=\"restaurant-address\">\n" +
+                    "                                    "+rgoods[i].introduction+"\n" +
+                    "                                </div>\n" +
+                    "                                <div class=\"restaurant-address\">\n" +
+                    "                                    库存数量： "+rgoods[i].quantity+"\n" +
+                    "                                </div>\n" +
+                    "                                <div class=\"shopmenu-food-price\">\n" +
+                    "                                    ¥ "+rgoods[i].price+"\n" +
+                    "                                </div>\n" +
+                    "\n" +
+                    "                            </div>\n" +
+                    "                        </div>")
+            }
+        }
+    });
+
+
 
     toastr.options = {
         closeButton: false,
@@ -96,19 +273,7 @@ function show(){
 
 }
 
-function checkInfo(){
-    var raddress = document.getElementById("raddress").value;
 
-    if(raddress == ""){
-        toastr.info("asdsdfe");
-        return false;
-    }else{
-        toastr.success("提交修改信息成功！等待管理员审核。");
-        return true;
-    }
-
-
-}
 
 </script>
 </head>
@@ -196,10 +361,6 @@ function checkInfo(){
                         </li>
                         <li> <a class="waves-effect waves-dark" href="RestaurantAddGoods.jsp" aria-expanded="false"><i class="mdi mdi-emoticon"></i><span class="hide-menu">新品发布</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="RestaurantAddDiscount.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">优惠信息发布</span></a>
-                        </li>   
-                         <li> <a class="waves-effect waves-dark" href="RestaurantInfoChange.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">餐厅信息修改</span></a>
-                        </li>
                         <li> <a class="waves-effect waves-dark" href="RestaurantStatistics.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">餐厅信息统计</span></a>
                         </li>      
                     </ul>               
@@ -230,7 +391,7 @@ function checkInfo(){
                 <!-- ============================================================== -->
                 <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">个人信息</h3>
+                        <h3 class="text-themecolor m-b-0 m-t-0">本店信息</h3>
                         
                     </div>
                 </div>
@@ -342,50 +503,27 @@ function checkInfo(){
                     <!-- Column -->
                         <div class="card">
                             <div class="card-block bg-info">
-                                <h3 class="text-white card-title">本店商品信息</h3>
+                                <h3 class="text-white card-title">本店优惠信息</h3>
                                 
                             </div>
                             <div class="card-block">
                                 <div class="message-box contact-box">
-                                    <h2 class="add-ct-btn"><button type="button" data-toggle="modal" data-target="#goodsModal" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
+                                    <h2 class="add-ct-btn"><button type="button" data-toggle="modal" data-target="#discountModal" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
                                     <div class="message-widget contact-widget">
                                         <!-- Message -->
-                                        <div class="form-group">
-                                        <label class="col-md-12">本店出售</label>
-                                        <div class="table-responsive">
-                                        <br>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>商品名称</th>
-                                                <th>单价</th>
-                                                <th>库存</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${sessionScope.res.rgoods}" var="item" varStatus="status">
-												<tr id="list">
-													<td>${item.foodName}</td>
-													<td>${item.price}</td>
-													<td>${item.quantity}</td>
-												</tr>
-											</c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                    </div>
+
                                         
                                         <div class="form-group">
-                                            <h2 class="add-ct-btn" style="top:auto;"><button type="button" data-toggle="modal" data-target="#discountModal" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button></h2>
-                                            <label class="col-md-12">本店优惠</label>
+
+                                            <label class="col-md-12">本店满减</label>
                                         <div class="table-responsive">
                                         <br>
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>满</th>
-                                                <th>减</th>
+                                                <th>满足金额</th>
+                                                <th>优惠金额</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -405,58 +543,6 @@ function checkInfo(){
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content" style="background-color: #eaf0f4;">
-                                        <div class="modal-header">
-                                            <h4 class="modal-title" >发布新商品</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            <div class="card-block">
-                                                <form class="form-horizontal form-material">
-
-                                                    <div class="form-group">
-                                                        <label class="col-md-12">商品名称</label>
-                                                        <div class="col-md-12">
-                                                            <input type="text" class="form-control form-control-line"  id="name" name="name">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="col-md-12">商品单价</label>
-                                                        <div class="col-md-12">
-                                                            <input type="text" class="form-control form-control-line"  id="price" name="price" onkeyup="value=value.replace(/[^\d]/g,'')">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label class="col-md-12">商品库存</label>
-                                                        <div class="col-md-12">
-                                                            <input type="text" class="form-control form-control-line"  id="quantity" name="quantity" onkeyup="value=value.replace(/[^\d]/g,'')">
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="form-group">
-                                                        <br>
-                                                        <div class="col-sm-12">
-                                                            　　　
-                                                            <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
-                                                            　　　　　
-                                                            <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
-                                                        </div>
-                                                    </div>
-
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal -->
-                            </div>
-
 
                             <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -468,7 +554,7 @@ function checkInfo(){
                                         <div class="modal-body">
 
                                             <div class="card-block">
-                                                <form class="form-horizontal form-material">
+                                                <form class="form-horizontal form-material" action="RestaurantAddDiscountServlet"  method="post" onsubmit="return checkDiscount()">
 
                                                     <div class="form-group">
                                                         <label class="col-md-12">满足金额数</label>
@@ -489,7 +575,7 @@ function checkInfo(){
                                                         <br>
                                                         <div class="col-sm-12">
                                                             　　　
-                                                            <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
+                                                            <button class="btn btn-success" type="submit" style="font-size: 18px;" >提交修改</button>
                                                             　　　　　
                                                             <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
                                                         </div>
@@ -510,8 +596,22 @@ function checkInfo(){
                 
                 
                 <!-- Row -->
+
+
+                        <h3 class="text-themecolor m-b-0 m-t-0">本店商品</h3>
+                <br>
+
+                <div class="row">
+
+                <div class="col-lg-12" id="goodsList">
+
+                </div>
+
+            </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
+
+
                 <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
@@ -549,7 +649,7 @@ function checkInfo(){
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
-<script src="css1/toastr.min.js"></script>
+    <script src="css1/toastr.min.js"></script>
 
 </body>
 </html>

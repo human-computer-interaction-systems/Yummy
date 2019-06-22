@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="slf4j-log4j12-1.7.10">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/slf4j-log4j12-1.7.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/slf4j-api-1.7.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/gson-2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/commons-fileupload-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/YummyOrderSystem/jar包/commons-io-2.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/YummyOrderSystem/src" />
+    </SOURCES>
+  </library>
+</component>

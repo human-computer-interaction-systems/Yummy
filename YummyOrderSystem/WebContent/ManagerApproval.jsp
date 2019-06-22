@@ -18,6 +18,7 @@
     <link href="./lite/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css1/toastr.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -27,6 +28,22 @@
 <script src="./css1/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 function show(){
+    toastr.options = {
+        closeButton: false,
+        debug: false,
+        progressBar: false,
+        positionClass: "toast-top-center",
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "2000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+    };
+
 	 $.ajaxSetup({cache:false});
 		$.ajax({
 			type:"get",
@@ -72,6 +89,7 @@ function getDataRow(h){
 	 var cancelCell = document.createElement('td');//创建第四列，操作列
 	 row.appendChild(cancelCell);
 	 var btnDel = document.createElement('input'); //创建一个input控件
+     btnDel.className = "btn btn-success";
 	 btnDel.setAttribute('type','button'); //type="button"
 	 btnDel.setAttribute('value','审核通过'); 
 	 
@@ -97,7 +115,7 @@ function getDataRow(h){
 								
 						});
 					location.reload();
-					alert("信息修改成功！");
+					toastr.success("信息修改成功！");
 			 
 			 //btnDel - td - tr - tbody - 删除(tr)
 			 //刷新网页还原。实际操作中，还要删除数据库中数据，实现真正删除
@@ -186,13 +204,11 @@ function getDataRow(h){
             <div class="scroll-sidebar">
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
-                    <ul id="sidebarnav">                       
-                         <li> <a class="waves-effect waves-dark" href="ManagerInfo.jsp" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">个人中心</span></a>
+                    <ul id="sidebarnav">
+                        <li> <a class="waves-effect waves-dark" href="ManagerStatistics.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">平台信息统计</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="ManagerApproval.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">审核信息</span></a>
                         </li>
-                         <li> <a class="waves-effect waves-dark" href="ManagerStatistics.jsp" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">平台信息统计</span></a>
-                        </li>     
                     </ul>              
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -232,10 +248,11 @@ function getDataRow(h){
                         <div class="card">
                             <div class="card-block">
                                 <h4 class="card-title">待审核修改信息申请</h4>
+                                <br>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
-                                            <tr>;
+                                            <tr>
                                                 <th>餐厅识别码</th>                                            
                                                 <th>餐厅地址</th>
                                                 <th>餐厅类型</th>                                                
@@ -293,5 +310,6 @@ function getDataRow(h){
     <script type="text/javascript" src="./lite/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
+    <script src="css1/toastr.min.js"></script>
 </body>
 </html>

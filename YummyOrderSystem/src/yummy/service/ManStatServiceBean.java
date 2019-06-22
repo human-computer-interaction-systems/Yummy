@@ -103,8 +103,8 @@ public class ManStatServiceBean implements ManStatService{
 	public List<List<Number>> getResStatistics1() {
 		// TODO Auto-generated method stub
 		return Arrays.asList(
-				Arrays.asList(11, 3), 
-				Arrays.asList(2, 7, 3, 1)
+				Arrays.asList(21, 12),
+				Arrays.asList(5, 13, 11, 7)
 				);
 	}
 
@@ -112,8 +112,8 @@ public class ManStatServiceBean implements ManStatService{
 	public List<List<Number>> getResStatistics2() {
 		// TODO Auto-generated method stub
 		return Arrays.asList(
-				Arrays.asList(2, 12), 
-				Arrays.asList(2, 5, 4, 3)
+				Arrays.asList(5 ,28),
+				Arrays.asList(6, 15, 6, 6)
 				);
 	}
 

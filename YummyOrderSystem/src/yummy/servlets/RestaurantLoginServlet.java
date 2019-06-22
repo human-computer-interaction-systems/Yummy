@@ -3,6 +3,8 @@ package yummy.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -49,8 +52,22 @@ public class RestaurantLoginServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
-		
-		doPost(request, response);
+
+		String rid = request.getParameter("rid");
+		String pwd = request.getParameter("pwd");
+		System.out.println("rid: "+rid);
+		Restaurant res = restaurantService.getRestaurant(rid,pwd);
+
+		Map<String,Restaurant> map = new HashMap<>();
+		map.put("Res", res);
+
+		Gson gson = new Gson();
+		String json = gson.toJson(map);
+		System.out.println(json);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter writer = response.getWriter();
+		writer.append(json);
 	}
 
 	/**

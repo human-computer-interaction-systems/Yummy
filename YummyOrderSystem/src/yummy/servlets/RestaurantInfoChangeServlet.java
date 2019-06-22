@@ -61,7 +61,7 @@ public class RestaurantInfoChangeServlet extends HttpServlet {
         }
 
         System.out.println(restaurantService.modifyInfo(res));
-        
+
         //���»Ự��
         Restaurant newRes = restaurantService.getRestaurant(Integer.toString(res.getRid()), res.getPassword());
         session.setAttribute("res", newRes);
