@@ -125,6 +125,10 @@
             background-color: #f5f5f5;
         }
 
+        .aui-palace-grid-active {
+            background-color: #f5f5f5;
+        }
+
         .aui-palace-grid-icon {
             width: 50px;
             height: 50px;
@@ -212,6 +216,9 @@ function show(){
 
 function showAll(){
 
+    $(".aui-palace-grid").removeClass("aui-palace-grid-active");
+    $(".aui-palace-grid").eq(0).addClass("aui-palace-grid-active");
+
     $(".rtypeDetail-0").show();
     $(".rtypeDetail-1").show();
     $(".rtypeDetail-2").show();
@@ -221,6 +228,9 @@ function showAll(){
 }
 
 function showDessert(){
+    $(".aui-palace-grid").removeClass("aui-palace-grid-active");
+    $(".aui-palace-grid").eq(1).addClass("aui-palace-grid-active");
+
 
     $(".rtypeDetail-0").show();
     $(".rtypeDetail-1").hide();
@@ -230,6 +240,8 @@ function showDessert(){
 }
 
 function showFastFood() {
+    $(".aui-palace-grid").removeClass("aui-palace-grid-active");
+    $(".aui-palace-grid").eq(2).addClass("aui-palace-grid-active");
 
     $(".rtypeDetail-0").hide();
     $(".rtypeDetail-1").show();
@@ -239,6 +251,8 @@ function showFastFood() {
 }
 
 function showBBQ() {
+    $(".aui-palace-grid").removeClass("aui-palace-grid-active");
+    $(".aui-palace-grid").eq(3).addClass("aui-palace-grid-active");
 
     $(".rtypeDetail-0").hide();
     $(".rtypeDetail-1").hide();
@@ -249,6 +263,8 @@ function showBBQ() {
 
 function showFruit() {
 
+    $(".aui-palace-grid").removeClass("aui-palace-grid-active");
+    $(".aui-palace-grid").eq(4).addClass("aui-palace-grid-active");
     $(".rtypeDetail-0").hide();
     $(".rtypeDetail-1").hide();
     $(".rtypeDetail-2").hide();
@@ -257,6 +273,8 @@ function showFruit() {
 }
 
 function showNecessities() {
+    $(".aui-palace-grid").removeClass("aui-palace-grid-active");
+    $(".aui-palace-grid").eq(5).addClass("aui-palace-grid-active");
 
     $(".rtypeDetail-0").hide();
     $(".rtypeDetail-1").hide();
@@ -391,7 +409,7 @@ function showNecessities() {
 
                 <div class="row" style="background-color: #fff">
 
-                    <a class="aui-palace-grid" onclick="showAll()">
+                    <a class="aui-palace-grid aui-palace-grid-active" onclick="showAll()">
                         <div class="aui-palace-grid-icon">
                             <img src="images/all.png" alt="">
                         </div>
