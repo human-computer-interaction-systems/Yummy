@@ -2,7 +2,7 @@
 <Context>
   <Resource name="jdbc/login" auth="Container" type="javax.sql.DataSource"
                maxActive="50" maxIdle="30" maxWait="10000" logAbandoned="true" 
-               username="root" password="tsn1000046" driverClassName="com.mysql.cj.jdbc.Driver"
+               username="root" password="" driverClassName="com.mysql.cj.jdbc.Driver"
                url="jdbc:mysql://localhost:3306/yummy?characterEncoding=UTF8&amp;serverTimezone=Asia/Shanghai"/>
                
     <Resource name="mail/Dog" auth="Container"

@@ -36,8 +36,7 @@ function check(){
      	alert("提交修改信息成功！等待管理员审核。");
     	return true;
     }
-    
-   
+
   }
 </script>
 </head>

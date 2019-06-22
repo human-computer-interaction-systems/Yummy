@@ -1,9 +1,6 @@
 package yummy.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import yummy.model.Client;
-import yummy.model.Goods;
-import yummy.model.Order;
 import yummy.service.ClientService;
 
 /**
@@ -41,7 +35,7 @@ public class ClientServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	clientService = (ClientService)appliationContext.getBean("ClientService");
     }  
 
@@ -63,24 +57,24 @@ public class ClientServlet extends HttpServlet {
 		//Client client = clientService.getClientByEmail("laogang@163.com");
 		
 //		Client client = new Client();
-//		client.setCname("ÕÔÓÂ");
+//		client.setCname("ï¿½ï¿½ï¿½ï¿½");
 //		client.setPhone("13895270005");
 //		client.setPassword("zhaoyong123");
 //		client.setLevel(1);
 //		client.setPaymentCode(123456);
 //		client.setEmail("zhaoyong@163.com");
 //		ArrayList<String> addresses = new ArrayList<String>();
-//		addresses.add("ÏÉÁÖ23ºÅ");
-//		addresses.add("¹ÄÂ¥18ºÅ");
+//		addresses.add("ï¿½ï¿½ï¿½ï¿½23ï¿½ï¿½");
+//		addresses.add("ï¿½ï¿½Â¥18ï¿½ï¿½");
 //		client.setAddresses(addresses);
 //		System.out.println(clientService.registerClient(client));
 		
-//		Client client = clientService.getClientByName("ÕÔÓÂmodTest", "zhaoyong123");
-//		client.setCname("ÕÔÓÂ");
+//		Client client = clientService.getClientByName("ï¿½ï¿½ï¿½ï¿½modTest", "zhaoyong123");
+//		client.setCname("ï¿½ï¿½ï¿½ï¿½");
 //		client.setPhone("13895270005");
 //		ArrayList<String> addresses = new ArrayList<String>();
-//		addresses.add("ÏÉÁÖ1ºÅ");
-//		addresses.add("ÐÂ½Ö¿Ú10ºÅ");
+//		addresses.add("ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½");
+//		addresses.add("ï¿½Â½Ö¿ï¿½10ï¿½ï¿½");
 //		client.setAddresses(addresses);
 //		System.out.println(clientService.modifyInfo(client));
 //		System.out.println(clientService.recharge(3, 345678, 200));
@@ -101,11 +95,11 @@ public class ClientServlet extends HttpServlet {
 ////		}
 //        out.println("</body></html>");
 		
-//		//¶©²Í²âÊÔ
+//		//ï¿½ï¿½ï¿½Í²ï¿½ï¿½ï¿½
 //		Order order = new Order();
 //		order.setCid(3);
 //		order.setRid(1903003);
-//		order.setCaddress("ÄÏ¾©´óÑ§¹ÄÂ¥Ð£ÇøÈí¼þÑ§ÔºÔºÂ¥");
+//		order.setCaddress("ï¿½Ï¾ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½Â¥Ð£ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ÔºÔºÂ¥");
 //		order.setTotalAmount(18);
 //		Calendar c = Calendar.getInstance();    
 //		java.text.SimpleDateFormat f=new java.text.SimpleDateFormat("yyMMddHHmmss");
@@ -113,7 +107,7 @@ public class ClientServlet extends HttpServlet {
 //		 //System.out.println(f.format(c.getTime())); 
 //		Goods goods = new Goods();
 //		goods.setRid(1903003);
-//		goods.setFoodName("Õ¨¼¦");
+//		goods.setFoodName("Õ¨ï¿½ï¿½");
 //		goods.setNumber(1);
 //		goods.setAmount(18);
 //		ArrayList<Goods> a = new ArrayList<Goods>();
@@ -122,10 +116,10 @@ public class ClientServlet extends HttpServlet {
 //		
 //		System.out.println(clientService.newOrder(order));
 //		
-//		//¶©µ¥Íê³É¸¶¿î
+//		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½
 //		System.out.println(clientService.payment(3, 345678, 18));
 		
-		//ÍË¶©²âÊÔ
+		//ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½
 		System.out.println("hello");
 		String email = request.getParameter("email");
 		System.out.println(email);

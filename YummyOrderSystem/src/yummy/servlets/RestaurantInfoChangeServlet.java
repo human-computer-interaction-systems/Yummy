@@ -33,7 +33,7 @@ public class RestaurantInfoChangeServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
     
@@ -59,23 +59,13 @@ public class RestaurantInfoChangeServlet extends HttpServlet {
 		if(!request.getParameter("raddress").equals("")) {
 			res.setRaddress(request.getParameter("raddress"));
         }
-        if(!request.getParameter("rtype").equals("")) {
-          	String rtype = request.getParameter("rtype");
-        	int type = 0;
-        	if(rtype.equals("²ÍÌü")) {
-        		type = 1;
-        	}else if(rtype.equals("ÉÌµê")){
-        		type = 2;
-        	}
-        	res.setRtype(type);
-        }
-        
+
         System.out.println(restaurantService.modifyInfo(res));
         
-        //¸üÐÂ»á»°Óò
+        //ï¿½ï¿½ï¿½Â»á»°ï¿½ï¿½
         Restaurant newRes = restaurantService.getRestaurant(Integer.toString(res.getRid()), res.getPassword());
         session.setAttribute("res", newRes);
-        
+
         response.sendRedirect("RestaurantInfo.jsp");
 	}
 

@@ -39,7 +39,7 @@ public class RestStatisticsServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
 

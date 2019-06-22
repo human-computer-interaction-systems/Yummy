@@ -40,7 +40,7 @@ public class ManagerStatisticsServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	managerService = (ManagerService)appliationContext.getBean("ManagerService");
     }  
 

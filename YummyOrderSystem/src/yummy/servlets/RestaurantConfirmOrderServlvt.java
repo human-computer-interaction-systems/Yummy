@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import yummy.model.Client;
 import yummy.model.Restaurant;
 import yummy.service.RestaurantService;
 
@@ -34,7 +33,7 @@ public class RestaurantConfirmOrderServlvt extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
     

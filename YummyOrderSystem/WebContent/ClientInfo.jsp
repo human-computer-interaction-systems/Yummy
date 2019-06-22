@@ -35,23 +35,29 @@
 
 
 <script language="javascript" type="text/javascript">
-function cancel(){
-	if(confirm("确定注销会员吗，注销后不可恢复数据。")){
-		var cid = ${sessionScope.client.cid};
-		$.ajaxSetup({cache:false});
-		$.ajax({
-			type:"get",
-			url:"ClientCancelServlet",
-			dataType:"json",
-			data:{"cid":cid},
-			success:function(data){
-				
-			}
-			});
-		alert("注销会员成功。");
-		window.location.href="Select.jsp"; 
-	}
-}
+    function checkInfo(){
+        var name = document.getElementById("name").value;
+        var pwd = document.getElementById("phone").value;
+        if(name ==  "" && pwd == ""){
+            toastr.info("请至少填入一项");
+            return false;
+        }else{
+            toastr.success("修改信息成功！");
+            return true;
+        }
+    }
+
+    function checkAddress(){
+        var field = document.getElementById("address").value;
+        if(field == ""){
+            toastr.info("请输入您的新地址！");
+            return false;
+        }else{
+            toastr.success("修改信息成功！");
+            return true;
+        }
+    }
+
 function show(){
 	var balance = ${sessionScope.client.balance};
 	balance = balance.toFixed(2);
@@ -72,7 +78,7 @@ function show(){
     toastr.options = {
         closeButton: false,
         debug: false,
-        progressBar: true,
+        progressBar: false,
         positionClass: "toast-top-center",
         onclick: null,
         showDuration: "300",
@@ -265,17 +271,17 @@ function show(){
                                             <div class="modal-body">
 
                                                     <div class="card-block">
-                                                        <form class="form-horizontal form-material">
+                                                        <form class="form-horizontal form-material" action="ClientInfoChangeServlet" id="curst" method="post" onsubmit="return checkInfo()">
                                                             <div class="form-group">
                                                                 <label class="col-md-12">会员名称</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" class="form-control form-control-line" value="${sessionScope.client.cname}"  id="name" name="name">
+                                                                    <input type="text" class="form-control form-control-line"   id="name" name="name">
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label class="col-md-12">电话号码</label>
                                                                 <div class="col-md-12">
-                                                                    <input type="text" class="form-control form-control-line" value="${sessionScope.client.phone}" id="phone" name="phone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')">
+                                                                    <input type="text" class="form-control form-control-line"  id="phone" name="phone" maxlength="11" onkeyup="value=value.replace(/[^\d]/g,'')">
                                                                 </div>
                                                             </div>
 
@@ -283,7 +289,7 @@ function show(){
                                                                 <br>
                                                                 <div class="col-sm-12">
                                                                     　　　
-                                                                    <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
+                                                                    <button class="btn btn-success" type="submit" style="font-size: 18px;" >提交修改</button>
                                                                     　　　　　
                                                                     <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
                                                                 </div>
@@ -386,7 +392,7 @@ function show(){
                                         <div class="modal-body">
 
                                             <div class="card-block">
-                                                <form class="form-horizontal form-material">
+                                                <form class="form-horizontal form-material" action="ClientInfoChangeServlet" id="curst2" method="post" onsubmit="return checkAddress()">
                                                     <div class="form-group">
                                                         <label class="col-md-12">新送餐地址</label>
                                                         <div class="col-md-12">
@@ -399,7 +405,7 @@ function show(){
                                                         <br>
                                                         <div class="col-sm-12">
                                                             　　　
-                                                            <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
+                                                            <button class="btn btn-success" type="submit" style="font-size: 18px;" >提交修改</button>
                                                             　　　　　
                                                             <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
                                                         </div>

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -43,7 +42,7 @@ public class ClientNewOrderServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	clientService = (ClientService)appliationContext.getBean("ClientService");
     }  
 	/**
@@ -94,7 +93,7 @@ public class ClientNewOrderServlet extends HttpServlet {
 		
 		System.out.println(clientService.newOrder(newOrder));
 		
-		//¸¶¿î
+		//ï¿½ï¿½ï¿½ï¿½
 		HttpSession session = request.getSession(true);
         Client client = (Client) session.getAttribute("client");
 		System.out.println(clientService.payment(client.getCid(), client.getPaymentCode(), newOrder.getTotalAmount()));

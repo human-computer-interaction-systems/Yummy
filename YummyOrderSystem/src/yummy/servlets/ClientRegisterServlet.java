@@ -37,7 +37,7 @@ public class ClientRegisterServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	clientService = (ClientService)appliationContext.getBean("ClientService");
     }  
 
@@ -77,7 +77,7 @@ public class ClientRegisterServlet extends HttpServlet {
 		newclient.setAddresses(a);
 		clientService.registerClient(newclient);
 		
-		//µã»÷Ìø×ªµ½Ö÷Ò³£¬´«µÝ²ÎÊý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½
 		Client client = clientService.getClientByName(name, pwd);
 		HttpSession session = request.getSession(true);
         session.setAttribute("client", client);

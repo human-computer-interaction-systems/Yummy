@@ -1,7 +1,6 @@
 package yummy.servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import yummy.model.Goods;
-import yummy.model.Restaurant;
-import yummy.service.ClientService;
 import yummy.service.RestaurantService;
 
 /**
@@ -37,7 +33,7 @@ public class RestaurantServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
     
@@ -50,17 +46,17 @@ public class RestaurantServlet extends HttpServlet {
 		String newRid = restaurantService.getNewRid();
 		System.out.println(restaurantService.getNewRid());
 		
-//		//×¢²á
+//		//×¢ï¿½ï¿½
 //		Restaurant newR = new Restaurant();
 //		newR.setRid(Integer.parseInt(newRid));
-//		newR.setRname("º«Ê½Õ¨¼¦");
+//		newR.setRname("ï¿½ï¿½Ê½Õ¨ï¿½ï¿½");
 //		newR.setRtype(1);
-//		newR.setRaddress("ºº¿ÚÂ·1ºÅ");
+//		newR.setRaddress("ï¿½ï¿½ï¿½ï¿½Â·1ï¿½ï¿½");
 //		newR.setBalance(0);
 //		ArrayList<Goods> newRGoods = new ArrayList<Goods>();
 //		Goods temp = new Goods();
 //		temp.setRid(Integer.parseInt(newRid));
-//		temp.setFoodName("Õ¨¼¦");
+//		temp.setFoodName("Õ¨ï¿½ï¿½");
 //		temp.setPrice(18);
 //		temp.setQuantity(100);
 //		temp.setAmount(0);
@@ -69,10 +65,10 @@ public class RestaurantServlet extends HttpServlet {
 //		newR.setRgoods(newRGoods);
 //		System.out.println(restaurantService.registerRestaurant(newR));
 		
-		//ÐÞ¸ÄÐÅÏ¢
+		//ï¿½Þ¸ï¿½ï¿½ï¿½Ï¢
 //		Restaurant newR = new Restaurant();
 //		newR.setRid(1903003);
-//		newR.setRaddress("ÎäººÂ·1ºÅ");
+//		newR.setRaddress("ï¿½äººÂ·1ï¿½ï¿½");
 //		newR.setRtype(2);
 //		System.out.println(restaurantService.modifyInfo(newR));
 		
@@ -82,7 +78,7 @@ public class RestaurantServlet extends HttpServlet {
 //			System.out.println(e.getFoodName()+" "+e.getQuantity());
 //		}
 		
-		//¶©µ¥ËÍ´ï²âÊÔ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Í´ï¿½ï¿½ï¿½ï¿½
 		System.out.println(restaurantService.affirmOrder(2));
 	}
 

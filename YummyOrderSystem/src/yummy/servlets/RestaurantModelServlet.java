@@ -2,7 +2,6 @@ package yummy.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,9 +17,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 
-import yummy.model.Order;
 import yummy.service.ResStatService;
-import yummy.service.RestaurantService;
 
 /**
  * Servlet implementation class RestaurantModelServlet
@@ -41,7 +38,7 @@ public class RestaurantModelServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	resStatService = (ResStatService)appliationContext.getBean("ResStatService");
     }  
 

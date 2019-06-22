@@ -19,6 +19,7 @@
     <link href="./lite/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css1/toastr.min.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -47,7 +48,7 @@ function show(){
     toastr.options = {
         closeButton: false,
         debug: false,
-        progressBar: true,
+        progressBar: false,
         positionClass: "toast-top-center",
         onclick: null,
         showDuration: "300",
@@ -94,6 +95,21 @@ function show(){
     });
 
 }
+
+function checkInfo(){
+    var raddress = document.getElementById("raddress").value;
+
+    if(raddress == ""){
+        toastr.info("asdsdfe");
+        return false;
+    }else{
+        toastr.success("提交修改信息成功！等待管理员审核。");
+        return true;
+    }
+
+
+}
+
 </script>
 </head>
 <body class="fix-header fix-sidebar card-no-border" onload="show()">
@@ -244,37 +260,26 @@ function show(){
                                     <div class="modal-dialog">
                                         <div class="modal-content" style="background-color: #eaf0f4;">
                                             <div class="modal-header">
-                                                <h4 class="modal-title" id="myModalLabel">修改会员信息</h4>
+                                                <h4 class="modal-title" id="myModalLabel">修改餐厅信息</h4>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                             </div>
                                             <div class="modal-body">
 
                                                 <div class="card-block">
-                                                    <form class="form-horizontal form-material">
+                                                    <form class="form-horizontal form-material" action="RestaurantInfoChangeServlet" id="curst" method="post" onsubmit="return checkInfo()">
                                                         <div class="form-group">
                                                             <label class="col-md-12">修改餐厅地址</label>
                                                             <div class="col-md-12">
-                                                                <input type="text" class="form-control form-control-line" value="${sessionScope.res.raddress}" id="raddress" name="raddress">
+                                                                <input type="text" class="form-control form-control-line"  id="raddress" name="raddress">
                                                             </div>
                                                         </div>
 
-
-                                                        <div class="form-group">
-                                                            <label class="col-sm-12">修改餐厅类型</label>
-                                                            <div class="col-sm-12">
-                                                                <select class="form-control form-control-line" id="rtype" name="rtype">
-                                                                    <option></option>
-                                                                    <option>餐厅</option>
-                                                                    <option>商店</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
 
                                                         <div class="form-group">
                                                             <br>
                                                             <div class="col-sm-12">
                                                                 　　　
-                                                                <button class="btn btn-success" type="button" style="font-size: 18px;" >提交修改</button>
+                                                                <button class="btn btn-success" type="submit" style="font-size: 18px;" >提交修改</button>
                                                                 　　　　　
                                                                 <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 18px;">　取消　</button>
                                                             </div>

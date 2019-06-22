@@ -2,8 +2,6 @@ package yummy.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,17 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.google.gson.Gson;
 
-import yummy.model.Client;
 import yummy.model.ClientFavor;
-import yummy.model.Order;
-import yummy.service.ClientService;
 import yummy.service.ClientStatisticsService;
 
 /**
@@ -46,7 +40,7 @@ public class ClientModelServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	clientStatisticsService = (ClientStatisticsService)appliationContext.getBean("ClientStatisticsService");
     }  
     

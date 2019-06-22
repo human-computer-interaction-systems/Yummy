@@ -16,7 +16,6 @@ import yummy.model.Client;
 import yummy.model.Manager;
 import yummy.model.Restaurant;
 import yummy.service.ManagerService;
-import yummy.service.RestaurantService;
 
 /**
  * Servlet implementation class ManagerServlet
@@ -38,7 +37,7 @@ public class ManagerServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	managerService = (ManagerService)appliationContext.getBean("ManagerService");
     }  
 

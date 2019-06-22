@@ -36,7 +36,7 @@ public class ClientInfoChangeServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	clientService = (ClientService)appliationContext.getBean("ClientService");
     }  
 	/**
@@ -59,16 +59,19 @@ public class ClientInfoChangeServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession(true);
         Client client = (Client) session.getAttribute("client");
-       
-        if(!request.getParameter("name").equals("")) {
-        	client.setCname(request.getParameter("name"));
+
+        String name = request.getParameter("name");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        if(name!=null && !name.equals("")) {
+        	client.setCname(name);
         }
-        if(!request.getParameter("phone").equals("")) {
-        	client.setPhone(request.getParameter("phone"));
+        if(phone!=null && !phone.equals("")) {
+        	client.setPhone(phone);
         }
-        if(!request.getParameter("address").equals("")) {
+        if(address!=null && !address.equals("")) {
         	ArrayList<String> addresses = client.getAddresses();
-        	addresses.add(request.getParameter("address"));
+        	addresses.add(address);
         	client.setAddresses(addresses);
         }
         System.out.println(clientService.modifyInfo(client));

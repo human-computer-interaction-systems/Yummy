@@ -12,7 +12,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import yummy.model.Manager;
-import yummy.model.Restaurant;
 import yummy.service.ManagerService;
 
 /**
@@ -34,7 +33,7 @@ public class ManagerApprovalServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	managerService = (ManagerService)appliationContext.getBean("ManagerService");
     } 
     

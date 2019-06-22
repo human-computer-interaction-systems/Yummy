@@ -36,7 +36,7 @@ public class RestaurantAddDiscountServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
     
@@ -69,7 +69,7 @@ public class RestaurantAddDiscountServlet extends HttpServlet {
         dis.setAmount(Double.parseDouble(amount));
         dis.setDiscount(Double.parseDouble(discount));
         
-        //Ìí¼Ó¸ÃÓÅ»ÝÐÅÏ¢
+        //ï¿½ï¿½Ó¸ï¿½ï¿½Å»ï¿½ï¿½ï¿½Ï¢
         System.out.println(restaurantService.addDiscount(dis));
         
         ArrayList<Discount> newdis = restaurantService.getRestaurantDis(res.getRid());

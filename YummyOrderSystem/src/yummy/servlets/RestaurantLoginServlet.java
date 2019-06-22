@@ -37,7 +37,7 @@ public class RestaurantLoginServlet extends HttpServlet {
 
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
     
@@ -62,7 +62,7 @@ public class RestaurantLoginServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		
-		String rid = request.getParameter("uname");//´Ë´¦×öÊ¶±ðÂëÓÃ
+		String rid = request.getParameter("uname");//ï¿½Ë´ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		String pwd = request.getParameter("pwd");
 		System.out.println(rid);
 		System.out.println(pwd);
@@ -75,20 +75,20 @@ public class RestaurantLoginServlet extends HttpServlet {
 	        session.setAttribute("resDiscount", dis);
 	        response.sendRedirect("RestaurantInfo.jsp");
 		}else {
-			showErrorMessage(response, "ÓÃ»§Ãû»òÃÜÂë´íÎó£¬ÇëÖØÐÂÊäÈë");
+			showErrorMessage(response, "ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 		}
 	}
 	
 	private void showErrorMessage(HttpServletResponse res, String msg) throws IOException{
-		//ÐÞ¸Ä
+		//ï¿½Þ¸ï¿½
         res.setContentType("text/html; charset=utf-8");
         PrintWriter out = res.getWriter();
         out.println("<html>");
         out.println("<head><title>Login</title></head>");
         out.println("<body>");
-        out.println("<h1>µÇÂ¼´íÎóÐÅÏ¢</h1>");
+        out.println("<h1>ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢</h1>");
         out.println("<h2>"+msg+"</h2>");
-        out.println("<a href=\"Login.jsp?identity=2\">·µ»Ø</a>");
+        out.println("<a href=\"Login.jsp?identity=2\">ï¿½ï¿½ï¿½ï¿½</a>");
         out.println("</body></html>");
     }
 

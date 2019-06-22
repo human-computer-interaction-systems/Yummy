@@ -511,7 +511,7 @@ function addToCart(i) {
                 addProductAnimation(x, y);
             }
             else{
-                toastr.error("你选择的商品库存不足！");
+                toastr.info("你选择的商品库存不足！");
             }
             isNew = false;
         }
@@ -595,7 +595,7 @@ function countAll(){
 function goPay(){
     var liList = $("#cartList").find("li");
     if(liList.length==0){
-        toastr.error("您还没有选择商品！");
+        toastr.info("您还没有选择商品！");
     }
     else{
         $("#myModal").modal('show');
@@ -607,14 +607,14 @@ function confirmPay(){
     //判断密码
     var paymentCode = ${sessionScope.client.paymentCode};
     if(getValue() != paymentCode){
-        toastr.error("您输入支付密码不正确！请重新输入。");
+        toastr.info("您输入支付密码不正确！请重新输入。");
         boxInput.init();
         return;
     }
 
     var identity = ${sessionScope.client.balance};
     if(countAll() > Number(identity)){
-        toastr.error("您账户余额不足！请重新选购商品。");
+        toastr.info("您账户余额不足！请重新选购商品。");
         boxInput.init();
         return;
     }
@@ -669,7 +669,7 @@ $(function(){
     toastr.options = {
         closeButton: false,
         debug: false,
-        progressBar: true,
+        progressBar: false,
         positionClass: "toast-top-center",
         onclick: null,
         showDuration: "300",

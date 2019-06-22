@@ -40,7 +40,7 @@ public class RestaurantRegisterServlet extends HttpServlet {
     
     public void init() throws ServletException {  
     	super.init();
-    	appliationContext = new ClassPathXmlApplicationContext("applicationContext.xml"); 
+    	appliationContext = new ClassPathXmlApplicationContext("applicationContext1.xml");
     	restaurantService = (RestaurantService)appliationContext.getBean("RestaurantService");
     }  
 
@@ -87,7 +87,7 @@ public class RestaurantRegisterServlet extends HttpServlet {
 		
 		restaurantService.registerRestaurant(newR);
 		
-		//µã»÷Ìø×ªµ½Ö÷Ò³£¬´«µÝ²ÎÊý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½
 		Restaurant res = restaurantService.getRestaurant(rid, password);
 		HttpSession session = request.getSession(true);
         session.setAttribute("res", res);
