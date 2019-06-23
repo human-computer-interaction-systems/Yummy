@@ -155,7 +155,7 @@ public class RestaurantAddGoodsServlet extends HttpServlet {
         session.setAttribute("res", newRes);
 
 		try {
-			Thread.sleep(10000);
+			Thread.sleep(5);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

@@ -735,10 +735,6 @@ function show(){
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -814,7 +810,7 @@ function show(){
                 <!-- ============================================================== -->
                 
                    
-                <div id="page-wrapper">
+
 			<div class="main-page">
 				<div class="four-grids">
 					<div class="col-md-3 four-grid">
@@ -953,9 +949,7 @@ function show(){
 				
 				<div class="clearfix"> </div>
 			</div>
-			</div>
-                
-                
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

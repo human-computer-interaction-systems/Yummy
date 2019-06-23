@@ -20,6 +20,7 @@
     <!-- You can change the theme colors from here -->
     <link href="./lite/css/colors/blue.css" id="theme" rel="stylesheet">
     <link href="css1/toastr.min.css" rel="stylesheet">
+    <link href="css1/BeAlert.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
    <!--[if lt IE 9]>
@@ -170,42 +171,50 @@
 		 
 		 //删除操作
 		 cancelCell.onclick=function(){
-			 if(confirm("确定取消该订单吗")){
-				 //找到按钮所在行的节点，然后删掉这一行
-				 //this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
-				 //alert(this.parentNode.cells[0].innerHTML);//得到订单号
-				 var oid = this.parentNode.cells[0].innerHTML;
-				 //alert(this.parentNode.cells[2].innerHTML);
-				 var orderTime = this.parentNode.cells[2].innerHTML;
-				 var nowTime = new Date();//现在时间
-				 var d1 = orderTime.replace(/\-/g, "/");//转换为js时间
-				 var oldTime = new Date(d1);
-				 //alert(parseInt(nowTime - oldTime) / 1000 / 60);
-				 var diffTime = parseInt(nowTime - oldTime) / 1000 / 60;//获取时间差分钟数
-				 if(diffTime>30){
-					 toastr.info("已经超过最大允许时间，不可退订!");
-				 }
-				 else{
-					 //根据oid退订，更新数据库
-					 $.ajaxSetup({cache:false})
-						$.ajax({
-							type:"get",
-							url:"ClientCancelOrderServlvt",
-							dataType:"json",
-							data:{"oid":oid},
-							success:function(data) {
-								
-							}
-									
-							});
-						location.reload();
-						toastr.success("取消订单成功！");
-				 }
-				 
-				 //btnDel - td - tr - tbody - 删除(tr)
-				 //刷新网页还原。实际操作中，还要删除数据库中数据，实现真正删除
-				 }
-			 }
+             var a = this;
+             confirm("提示", "确认删除该订单吗？", function (isConfirm){
+                 if(isConfirm){
+                     //找到按钮所在行的节点，然后删掉这一行
+                     //this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+                     //alert(this.parentNode.);//得到订单号
+                     var oid = a.parentNode.cells[0].innerHTML;
+                     //alert(this.parentNode.cells[2].innerHTML);
+                     var orderTime = a.parentNode.cells[2].innerHTML;
+                     var nowTime = new Date();//现在时间
+                     var d1 = orderTime.replace(/\-/g, "/");//转换为js时间
+                     var oldTime = new Date(d1);
+                     //alert(parseInt(nowTime - oldTime) / 1000 / 60);
+                     var diffTime = parseInt(nowTime - oldTime) / 1000 / 60;//获取时间差分钟数
+                     if(diffTime>30){
+                         toastr.info("已经超过最大允许时间，不可退订!");
+                     }
+                     else{
+                         //根据oid退订，更新数据库
+                         $.ajaxSetup({cache:false})
+                         $.ajax({
+                             type:"get",
+                             url:"ClientCancelOrderServlvt",
+                             dataType:"json",
+                             data:{"oid":oid},
+                             success:function(data) {
+
+                             }
+
+                         });
+                         toastr.success("取消订单成功！");
+                         setTimeout(function(){
+                             location.reload();
+                         },2000);
+
+
+                     }
+
+                     //btnDel - td - tr - tbody - 删除(tr)
+                     //刷新网页还原。实际操作中，还要删除数据库中数据，实现真正删除
+                 }
+             }, {confirmButtonText: '确定取消', cancelButtonText: '我再想想', width: 400});
+
+         }
 		 cancelCell.appendChild(btnDel);  //把删除按钮加入td，别忘了
 		 
 		 return row; //返回tr数据	 
@@ -315,10 +324,6 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
-                            <form class="app-search">
-                                <input type="text" class="form-control" placeholder="Search & enter"> <a class="srh-btn"><i class="ti-close"></i></a> </form>
-                        </li>
                     </ul>
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
@@ -511,5 +516,6 @@
     <!--Custom JavaScript -->
     <script type="text/javascript" src="./lite/js/custom.min.js"></script>
     <script src="css1/toastr.min.js"></script>
+    <script src="css1/BeAlert.js"></script>
 </body>
 </html>
