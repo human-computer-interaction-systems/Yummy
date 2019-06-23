@@ -86,7 +86,7 @@ public class ClientLoginServlet extends HttpServlet {
 		if(client.getCname()!=null && client.getLevel() != 0 && client.getPassword().equals(pwd)) {
 			HttpSession session = request.getSession(true);
 	        session.setAttribute("client", client);
-	        response.sendRedirect("ClientInfo.jsp");
+	        response.sendRedirect("ClientGetRs.jsp");
 		}else {
 			showErrorMessage(response, "�û����������������������");
 		}
